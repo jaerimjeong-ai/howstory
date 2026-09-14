@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="하우스토리 — 부품 이름 몰라도 되는 상담형 조립 PC. 용도와 예산만 말하면 구성부터 조립, 테스트까지.">
+<meta property="og:title" content="하우스토리 · 상담형 조립 PC">
+<meta property="og:description" content="용도와 예산 두 가지만 말해 주세요. 부품 마진 0원, 한 달 3대 한정.">
+<title>하우스토리</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-2: #F7F7F7;
+    --bg-3: #EFEFEF;
+    --ink: #000000;
+    --ink-2: #555555;
+    --ink-3: #999999;
+    --line: #E5E5E5;
+    --line-2: #000000;
+    --btn: #000000;
+    --btn-ink: #FFFFFF;
+    --red: #EF3A3A;
+    --red-soft: #FDECEC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111111;
+      --bg-2: #1A1A1A;
+      --bg-3: #242424;
+      --ink: #FFFFFF;
+      --ink-2: #B5B5B5;
+      --ink-3: #777777;
+      --line: #2C2C2C;
+      --line-2: #FFFFFF;
+      --btn: #FFFFFF;
+      --btn-ink: #000000;
+      --red: #FF5C5C;
+      --red-soft: #3A1A1A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111111;
+    --bg-2: #1A1A1A;
+    --bg-3: #242424;
+    --ink: #FFFFFF;
+    --ink-2: #B5B5B5;
+    --ink-3: #777777;
+    --line: #2C2C2C;
+    --line-2: #FFFFFF;
+    --btn: #FFFFFF;
+    --btn-ink: #000000;
+    --red: #FF5C5C;
+    --red-soft: #3A1A1A;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Pretendard, "Pretendard Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 16px; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .num { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  /* top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; border-bottom: 1px solid var(--line-2); }
+  .brand { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; text-decoration: none; }
+  .nav { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+  .nav a { text-decoration: none; color: var(--ink-2); }
+  .nav a:hover { color: var(--ink); }
+  .top .cta { font-size: 13px; font-weight: 700; padding: 8px 14px; background: var(--btn); color: var(--btn-ink); text-decoration: none; }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; padding-block: 56px 48px; border-bottom: 1px solid var(--line); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 8px; border: 1px solid var(--ink); }
+  .badge.red { border-color: var(--red); color: var(--red); }
+  .hero h1 { margin-top: 18px; font-size: clamp(32px, 4.6vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.18; }
+  .hero .lead { margin-top: 18px; font-size: 16px; color: var(--ink-2); max-width: 36em; }
+  .hero .lead b { color: var(--ink); font-weight: 700; }
+  .facts { margin-top: 28px; display: grid; grid-template-columns: repeat(3, auto); gap: 0; width: fit-content; border-top: 1px solid var(--line-2); }
+  .facts div { padding: 12px 24px 12px 0; border-bottom: 1px solid var(--line); }
+  .facts div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .facts b { display: block; font-size: 22px; font-weight: 900; letter-spacing: -0.03em; }
+  .facts span { font-size: 12px; color: var(--ink-2); }
+
+  .quick { border: 1px solid var(--line-2); padding: 24px; }
+  .quick h3 { font-size: 17px; }
+  .quick .sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+  .field { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .field label { font-size: 13px; font-weight: 700; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink-2); padding: 7px 12px; font-size: 13px; cursor: pointer; font-family: inherit; font-weight: 500; }
+  .chip[aria-pressed="true"] { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); font-weight: 700; }
+  input[type=range] { width: 100%; accent-color: var(--ink); }
+  .budget { display: flex; justify-content: space-between; align-items: baseline; }
+  .budget strong { font-size: 22px; font-weight: 900; letter-spacing: -0.03em; }
+  .est { margin-top: 16px; padding: 14px; background: var(--bg-2); font-size: 13px; color: var(--ink-2); }
+  .est .tier { display: block; font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .est strong { color: var(--ink); font-weight: 700; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; padding: 14px 20px; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; text-decoration: none; letter-spacing: -0.01em; }
+  .btn-primary { background: var(--btn); color: var(--btn-ink); }
+  .btn-line { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .quick .btn { width: 100%; margin-top: 18px; }
+
+  /* sections */
+  section.block { padding-block: 44px; border-bottom: 1px solid var(--line); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .head p { color: var(--ink-3); font-size: 13px; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-2); }
+  .step { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); }
+  .step + .step { padding-left: 20px; border-left: 1px solid var(--line); }
+  .step .n { font-size: 12px; font-weight: 700; color: var(--ink-3); }
+  .step h3 { margin-top: 6px; }
+  .step p { margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+  .step .t { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; padding: 2px 6px; background: var(--bg-3); }
+
+  /* product-style cards */
+  .builds { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .build { display: grid; grid-template-columns: 1fr; }
+  .build .art { aspect-ratio: 4 / 3; max-width: 100%; background: var(--bg-2); position: relative; overflow: hidden; }
+  .build .art .pc { position: absolute; inset: 0; display: grid; place-items: center; }
+  .build .art svg { width: 46%; height: auto; }
+  .build .art .tag { position: absolute; left: 12px; top: 12px; font-size: 11px; font-weight: 700; padding: 3px 7px; background: var(--bg); color: var(--ink); }
+  .build .art .tag.red { background: var(--red); color: #fff; }
+  .build .body { padding-top: 14px; }
+  .build .brandline { font-size: 12px; font-weight: 700; color: var(--ink-3); }
+  .build h3 { margin-top: 4px; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
+  .build .price { margin-top: 8px; display: flex; align-items: baseline; gap: 8px; }
+  .build .price b { font-size: 20px; font-weight: 900; letter-spacing: -0.03em; }
+  .build .price span { font-size: 12px; color: var(--ink-3); }
+  .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags i { font-style: normal; font-size: 11px; font-weight: 500; padding: 3px 7px; background: var(--bg-3); color: var(--ink-2); }
+  .spec { margin-top: 14px; border-top: 1px solid var(--line-2); display: grid; grid-template-columns: 64px 1fr auto; column-gap: 12px; font-size: 13px; }
+  .spec > * { padding: 8px 0; border-bottom: 1px solid var(--line); margin: 0; }
+  .spec dt { color: var(--ink-3); font-weight: 700; font-size: 12px; }
+  .spec dd.v { color: var(--ink); }
+  .spec dd.p { color: var(--ink-2); text-align: right; font-variant-numeric: tabular-nums; }
+  .quote { margin-top: 14px; padding: 14px; background: var(--bg-2); font-size: 13px; color: var(--ink-2); }
+  .quote b { color: var(--ink); font-weight: 700; }
+  .build.empty .art { border: 1px dashed var(--line); background: var(--bg); }
+
+  .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line-2); }
+  .why div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--line); }
+  .why div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .why h3 { font-size: 16px; }
+  .why p { margin-top: 8px; font-size: 13px; color: var(--ink-2); }
+
+  .capacity { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .capacity .big { font-size: 56px; font-weight: 900; letter-spacing: -0.05em; line-height: 1; margin-top: 8px; }
+  .capacity .big small { font-size: 16px; font-weight: 700; color: var(--ink-3); margin-left: 6px; letter-spacing: -0.01em; }
+  .capacity p { font-size: 13px; color: var(--ink-2); margin-top: 12px; max-width: 34em; }
+  .bars { display: flex; gap: 4px; margin-top: 14px; max-width: 240px; }
+  .bars i { flex: 1; height: 6px; background: var(--line); }
+  .bars i.on { background: var(--ink); }
+  .fees { border-top: 1px solid var(--line-2); font-size: 14px; }
+  .fees div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .fees b { font-weight: 700; }
+  .fees .free { color: var(--red); font-weight: 700; }
+  .note { font-size: 12px; color: var(--ink-3); }
+
+  .faq { border-top: 1px solid var(--line-2); }
+  .faq details { border-bottom: 1px solid var(--line); padding-block: 14px; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 15px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--ink-3); font-weight: 400; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { margin-top: 8px; font-size: 13px; color: var(--ink-2); max-width: 60ch; }
+
+  /* form */
+  .apply { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; }
+  .apply .side p { color: var(--ink-2); font-size: 14px; margin-top: 8px; }
+  .apply .side .contact { margin-top: 20px; font-size: 13px; color: var(--ink-2); display: grid; gap: 6px; }
+  .apply .side .contact span { font-weight: 700; color: var(--ink); margin-right: 6px; }
+  form.card { display: grid; gap: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .f { display: flex; flex-direction: column; gap: 6px; }
+  .f label { font-size: 13px; font-weight: 700; }
+  .f input, .f select, .f textarea { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 0; padding: 12px; width: 100%; }
+  .f input:focus, .f select:focus, .f textarea:focus { border-color: var(--ink); outline: none; }
+  .f textarea { min-height: 96px; resize: vertical; }
+  .f .hint { font-size: 12px; color: var(--ink-3); }
+  .actions { display: grid; gap: 8px; }
+  .actions .btn { width: 100%; }
+  .result { display: none; background: var(--bg-2); padding: 14px; }
+  .result.show { display: block; }
+  .result .ok { font-weight: 700; font-size: 13px; }
+  .result pre { margin: 10px 0 0; white-space: pre-wrap; font-family: inherit; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+  footer { padding-block: 28px 48px; font-size: 12px; color: var(--ink-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer b { color: var(--ink); font-weight: 900; font-size: 14px; letter-spacing: -0.03em; }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 32px; }
+    .nav { display: none; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(3) { padding-left: 0; border-left: 0; }
+    .builds, .why, .capacity, .apply, .row { grid-template-columns: 1fr; }
+    .why div + div { padding-left: 0; border-left: 0; }
+    .capacity { gap: 28px; }
+    section.block { padding-block: 36px; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+    .step + .step { padding-left: 0; border-left: 0; }
+    .facts { grid-template-columns: 1fr; width: 100%; }
+    .facts div + div { padding-left: 0; border-left: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .chip, .btn, .nav a { transition: background .12s, color .12s, border-color .12s; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#">하우스토리</a>
+    <nav class="nav">
+      <a href="#how">진행 방식</a>
+      <a href="#builds">조립 사례</a>
+      <a href="#price">비용</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="cta" href="#apply">상담 신청</a>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="badge red">이달 조립 가능 2대 남음</span>
+      <h1>하우스토리에선<br>부품 이름 몰라도 돼요.<br>뭐 할 건지, 얼마까진지만.</h1>
+      <p class="lead">견적 사이트에서 CPU 고르다 포기한 적 있으시죠. <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
+      <div class="facts">
+        <div><b>0원</b><span>부품 마진 · 영수증 그대로</span></div>
+        <div><b>3대</b><span>한 달 조립 한도</span></div>
+        <div><b>1년</b><span>조립 문제 무상 점검</span></div>
+      </div>
+    </div>
+
+    <div class="quick" id="quick">
+      <h3>10초 견적 감 잡기</h3>
+      <p class="sub">정확한 견적은 상담 후에 나가요. 여긴 감만.</p>
+      <div class="field">
+        <label>주로 뭐 하실 건가요?</label>
+        <div class="chips" id="useChips" role="group" aria-label="용도">
+          <button type="button" class="chip" data-use="office" aria-pressed="false">사무·인강</button>
+          <button type="button" class="chip" data-use="game" aria-pressed="true">게임</button>
+          <button type="button" class="chip" data-use="edit" aria-pressed="false">영상 편집</button>
+          <button type="button" class="chip" data-use="ai" aria-pressed="false">AI·개발</button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="budget"><label for="budget">예산 (본체만)</label><strong class="num" id="budgetOut">150만원</strong></div>
+        <input type="range" id="budget" min="60" max="400" step="10" value="150">
+      </div>
+      <div class="est" id="est"></div>
+      <a class="btn btn-primary" href="#apply">이 조건으로 상담 신청</a>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="head">
+      <h2>이렇게 진행돼요</h2>
+      <p>신청부터 받아보시기까지 보통 7~10일</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">STEP 1</span><h3>신청</h3><p>아래 폼에 용도, 예산, 연락처만 남겨 주세요.</p><span class="t">1분</span></div>
+      <div class="step"><span class="n">STEP 2</span><h3>상담 · 견적</h3><p>메일이나 전화로 10분쯤 얘기하고 부품 목록과 총액을 보내 드려요. 여기까진 무료예요.</p><span class="t">1~2일</span></div>
+      <div class="step"><span class="n">STEP 3</span><h3>부품 주문 · 조립</h3><p>확정하시면 부품값 입금 후 주문해요. 도착하면 조립하고 하루 동안 부하 테스트를 돌려요.</p><span class="t">5~7일</span></div>
+      <div class="step"><span class="n">STEP 4</span><h3>전달</h3><p>직접 수령이나 택배. 조립 사진, 온도 기록, 영수증을 같이 드려요.</p><span class="t">1일</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="builds">
+    <div class="head">
+      <h2>조립 사례</h2>
+      <p>가격은 다나와 최저가 2026.09.14 기준 · 시세는 매일 바뀌어요</p>
+    </div>
+    <div class="builds">
+      <article class="build">
+        <div class="art">
+          <span class="tag red">150만원 맞춤</span>
+          <div class="pc" aria-hidden="true">
+            <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-3)">
+              <rect x="30" y="20" width="140" height="200" rx="4"/>
+              <rect x="30" y="20" width="140" height="70" rx="4" fill="currentColor" opacity=".08" stroke="none"/>
+              <circle cx="100" cy="55" r="20"/>
+              <circle cx="100" cy="55" r="7"/>
+              <line x1="48" y1="120" x2="152" y2="120"/>
+              <line x1="48" y1="150" x2="152" y2="150"/>
+              <line x1="48" y1="180" x2="120" y2="180"/>
+            </svg>
+          </div>
+        </div>
+        <div class="body">
+          <div class="brandline">GEFORCE RTX 5060 · 1080p 게이밍</div>
+          <h3>롤·발로란트·배그 고옵션, 150만원 안에서 제일 오래 가는 조합</h3>
+          <div class="price"><b class="num">1,499,440원</b><span>부품 합계 · 조립비 별도</span></div>
+          <div class="tags"><i>라이젠5 5600</i><i>RTX 5060 8GB</i><i>16GB 듀얼채널</i><i>NVMe 1TB</i><i>650W</i></div>
+          <dl class="spec">
+            <dt>CPU</dt><dd class="v">AMD 라이젠5 5600 (쿨러 포함)</dd><dd class="p">176,640</dd>
+            <dt>메인보드</dt><dd class="v">ASUS PRIME B550M-K ARGB</dd><dd class="p">108,170</dd>
+            <dt>램</dt><dd class="v">삼성 DDR4-3200 8GB × 2</dd><dd class="p">159,800</dd>
+            <dt>그래픽</dt><dd class="v">갤럭시 지포스 RTX 5060 BLACK OC 8GB</dd><dd class="p">667,650</dd>
+            <dt>SSD</dt><dd class="v">KLEVV CRAS C910G NVMe 1TB</dd><dd class="p">285,000</dd>
+            <dt>파워</dt><dd class="v">쿨러마스터 MWE 브론즈 650W</dd><dd class="p">59,600</dd>
+            <dt>케이스</dt><dd class="v">darkFlash DK200 NEO MESH 식스팬</dd><dd class="p">42,580</dd>
+          </dl>
+          <div class="quote"><b>왜 이 조합이냐면</b> 요즘 램·SSD 값이 작년의 두세 배라, 최신 세대로 가면 램에만 35만원이 들어요. 그래서 검증된 DDR4 세대로 가고 그 돈을 그래픽카드에 몰았어요. 1080p 게임엔 CPU가 병목 안 되고, 나중에 그래픽카드만 바꿔도 한참 더 써요.</div>
+        </div>
+      </article>
+
+      <article class="build">
+        <div class="art">
+          <span class="tag">BUILD 001 · 첫 번째 고객</span>
+          <div class="pc" aria-hidden="true">
+            <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-3)">
+              <rect x="30" y="20" width="140" height="200" rx="4"/>
+              <rect x="30" y="20" width="140" height="70" rx="4" fill="currentColor" opacity=".08" stroke="none"/>
+              <circle cx="100" cy="55" r="20"/>
+              <circle cx="100" cy="55" r="7"/>
+              <line x1="48" y1="120" x2="152" y2="120"/>
+              <line x1="48" y1="150" x2="152" y2="150"/>
+              <line x1="48" y1="180" x2="120" y2="180"/>
+            </svg>
+          </div>
+        </div>
+        <div class="body">
+          <div class="brandline">게임용 · 직접 수령</div>
+          <h3>희대님의 게이밍 PC</h3>
+          <div class="price"><b>고객 후기</b><span>2026 · 상세 구성은 고객 동의 후 공개</span></div>
+          <div class="tags"><i>상담형 견적</i><i>케이블 정리</i><i>부하 테스트 완료</i></div>
+          <div class="quote"><b>희대님 한마디</b> "조합이 끝내주는 컴퓨터 조립이었습니다. 부품 하나하나 왜 골랐는지 설명해 주니까 뭘 받았는지 알겠더라고요. 케이블 정리까지 깔끔해서 열어 봐도 기분 좋습니다."</div>
+          <div class="quote" style="margin-top:8px"><b>하우스토리 메모</b> 예산 안에서 그래픽카드에 힘을 주고 나머지는 딱 맞게 짰어요. 하루 부하 테스트에서 온도 문제 없었고, 1년 무상 점검 대상이에요.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="head">
+      <h2>큰 데 놔두고 왜 하우스토리요?</h2>
+    </div>
+    <div class="why">
+      <div><h3>고르는 걸 대신 해요</h3><p>다나와 견적 화면은 이미 아는 사람용이에요. "롤이랑 발로란트요, 150만원이요"까지만 들어도 구성이 나와요.</p></div>
+      <div><h3>팔고 끝이 아니에요</h3><p>1년 뒤 "램 늘리면 나아져요?" 물어보셔도 답해요. 문제 생기면 원격으로 먼저 봐 드려요.</p></div>
+      <div><h3>과정을 다 보여 드려요</h3><p>조립 사진, 케이블 정리, 부하 테스트 온도까지 기록해서 같이 드려요. 뭘 받았는지 아는 게 마음이 편해요.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="price">
+    <div class="capacity">
+      <div>
+        <h2>이달 남은 자리</h2>
+        <div class="big num">2<small>/ 3대</small></div>
+        <div class="bars"><i class="on"></i><i class="on"></i><i></i></div>
+        <p>본업이 따로 있어서 한 달에 세 대까지만 받아요. 대신 한 대 한 대 하우스토리 이름 걸고 조립해요. 다 차면 다음 달 예약으로 받아요.</p>
+      </div>
+      <div>
+        <h2>비용</h2>
+        <div class="fees" style="margin-top:14px">
+          <div><span>조립 + 케이블 정리 + 부하 테스트</span><b class="num">50,000원</b></div>
+          <div><span>상담 · 견적</span><b class="free">무료</b></div>
+          <div><span>부품값</span><b>실비 · 영수증 첨부</b></div>
+          <div><span>1년 내 조립 문제 점검</span><b class="free">무료</b></div>
+        </div>
+        <p class="note" style="margin-top:10px">조립비는 대수·구성과 상관없이 동일해요. 부품값은 주문 시점 실비예요.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="head"><h2>자주 묻는 것</h2></div>
+    <div class="faq">
+      <details><summary>부품 마진 붙이시나요?</summary><p>안 붙여요. 부품은 제가 주문하되 영수증 그대로 드리고, 제 몫은 조립비뿐이에요. 그래서 대형 업체보다 싸게 나오는 경우가 많아요.</p></details>
+      <details><summary>A/S는 어떻게 돼요?</summary><p>부품은 각 제조사 보증(보통 2~3년)을 그대로 받으시고, 제가 중간에서 접수 도와 드려요. 조립 문제는 1년 안에 무상으로 봐 드려요.</p></details>
+      <details><summary>제가 부품 골라서 조립만 맡겨도 돼요?</summary><p>돼요. 호환성만 한 번 봐 드리고 조립비만 받아요.</p></details>
+      <details><summary>지역은요?</summary><p>직접 수령은 서울·수도권이고, 그 외 지역은 완충 포장해서 택배로 보내 드려요.</p></details>
+    </div>
+  </section>
+
+  <section class="block" id="apply">
+    <div class="apply">
+      <div class="side">
+        <h2>상담 신청</h2>
+        <p>남겨 주시면 하루 안에 연락드려요. 여기까진 아무 비용도 안 들어요.</p>
+        <div class="contact">
+          <div><span>메일</span><a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></div>
+          <div><span>답장</span>평일 저녁, 주말에 드려요 (본업이 있어요)</div>
+        </div>
+      </div>
+      <form class="card" id="form" novalidate>
+        <div class="row">
+          <div class="f"><label for="fUse">용도</label>
+            <select id="fUse">
+              <option value="게임">게임</option>
+              <option value="사무·인강">사무·인강</option>
+              <option value="영상 편집">영상 편집</option>
+              <option value="AI·개발">AI·개발</option>
+              <option value="기타">기타 (메모에 적어 주세요)</option>
+            </select>
+          </div>
+          <div class="f"><label for="fBudget">예산 (본체만, 만원)</label><input id="fBudget" type="number" inputmode="numeric" placeholder="150" min="30" max="1000"></div>
+        </div>
+        <div class="row">
+          <div class="f"><label for="fName">부르실 이름</label><input id="fName" type="text" placeholder="홍길동"></div>
+          <div class="f"><label for="fContact">연락처</label><input id="fContact" type="text" placeholder="이메일이나 전화번호"><span class="hint">편한 쪽 하나만요.</span></div>
+        </div>
+        <div class="f"><label for="fMemo">하고 싶은 게임이나 프로그램, 원하는 것</label><textarea id="fMemo" placeholder="예: 발로란트, 배그 240Hz로 돌리고 싶어요. 화이트 케이스면 좋겠어요."></textarea></div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">메일로 신청 보내기</button>
+          <span class="note">누르면 메일 앱이 열려요. 안 열리면 아래 내용을 복사해서 howsdoyi@gmail.com 으로 보내 주세요.</span>
+        </div>
+        <div class="result" id="result">
+          <div class="ok">메일 앱을 열었어요. 열리지 않으면 아래 내용을 복사해서 보내 주세요.</div>
+          <pre id="resultText"></pre>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span><b>하우스토리</b> &nbsp;·&nbsp; 부업으로 운영해요 &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
+    <span>© 2026 하우스토리 · 신청하신 연락처는 상담에만 쓰고 보관하지 않아요</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var use = 'game';
+  var chips = document.querySelectorAll('#useChips .chip');
+  var budget = document.getElementById('budget');
+  var out = document.getElementById('budgetOut');
+  var est = document.getElementById('est');
+
+  var tiers = {
+    office: [
+      [100, '사무용 기본', '사무·인강엔 내장그래픽으로 충분해요. 요즘 램 값이 비싸서 16GB 기준이에요.'],
+      [160, '사무용 여유', '캐드나 가벼운 편집까지 되는 구성. 사무용으론 이 위로는 낭비예요.'],
+      [9999,'사무용 과함',  '사무용에 이 예산은 많아요. 상담 때 용도를 다시 여쭤볼게요.']
+    ],
+    game: [
+      [110, '롤·발로란트 급', '가벼운 게임은 고옵션. 그래픽카드는 8GB급이나 중고를 같이 고민해요.'],
+      [175, '1080p 고옵션',   '대부분 게임 1080p 고옵션 144Hz. 지금 시세로 제일 많이 나가는 구간이에요.'],
+      [250, '1440p 고옵션',   '1440p에서 여유 있게. 그래픽카드에 돈을 몰아주고 램 32GB.'],
+      [9999,'4K·하이엔드',    '4K나 240Hz 목표. 케이스, 쿨링, 파워도 같이 신경 써야 해요.']
+    ],
+    edit: [
+      [150, '편집 입문',  '풀HD 편집은 되는데 4K는 답답할 수 있어요. 램 32GB부터 값이 확 뛰어요.'],
+      [260, '4K 편집',    '4K 타임라인 무난. CPU 코어 수와 램 32~64GB에 투자.'],
+      [9999,'전문 편집',  '여러 4K 트랙, 색보정까지. 저장장치 구성이 핵심이에요.']
+    ],
+    ai: [
+      [170, '개발용',       '코딩·도커·VM은 넉넉. 로컬 AI 모델 돌리기엔 그래픽 메모리가 부족해요.'],
+      [300, '로컬 AI 입문', '그래픽 메모리 16GB급으로 중소형 모델 실행. 램 32GB 이상.'],
+      [9999,'로컬 AI 본격', '그래픽 메모리 24GB 이상. 파워와 케이스 크기부터 같이 정해야 해요.']
+    ]
+  };
+
+  function render() {
+    var v = parseInt(budget.value, 10);
+    out.textContent = v + '만원';
+    var list = tiers[use];
+    var hit = list[list.length - 1];
+    for (var i = 0; i < list.length; i++) { if (v <= list[i][0]) { hit = list[i]; break; } }
+    est.innerHTML = '<span class="tier">' + hit[1] + '</span>' + hit[2] + ' <strong>정확한 구성은 상담에서 잡아요.</strong>';
+    var sel = document.getElementById('fUse');
+    var map = { office: '사무·인강', game: '게임', edit: '영상 편집', ai: 'AI·개발' };
+    if (sel) sel.value = map[use];
+    var fb = document.getElementById('fBudget');
+    if (fb && !fb.dataset.touched) fb.value = v;
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      c.setAttribute('aria-pressed', 'true');
+      use = c.dataset.use;
+      render();
+    });
+  });
+  budget.addEventListener('input', render);
+  document.getElementById('fBudget').addEventListener('input', function () { this.dataset.touched = '1'; });
+  render();
+
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var g = function (id) { return (document.getElementById(id).value || '').trim(); };
+    var missing = [];
+    if (!g('fBudget')) missing.push('예산');
+    if (!g('fContact')) missing.push('연락처');
+    var res = document.getElementById('result');
+    var txt = document.getElementById('resultText');
+    var ok = res.querySelector('.ok');
+    if (missing.length) {
+      res.classList.add('show');
+      ok.textContent = missing.join(', ') + '을(를) 적어 주셔야 연락드릴 수 있어요.';
+      ok.style.color = 'var(--red)';
+      txt.textContent = '';
+      return;
+    }
+    ok.textContent = '메일 앱을 열었어요. 열리지 않으면 아래 내용을 복사해서 보내 주세요.';
+    ok.style.color = '';
+    var lines = [
+      '[하우스토리 조립 상담 신청]',
+      '이름: ' + (g('fName') || '(미기재)'),
+      '연락처: ' + g('fContact'),
+      '용도: ' + g('fUse'),
+      '예산: ' + g('fBudget') + '만원 (본체만)',
+      '원하는 것: ' + (g('fMemo') || '(없음)')
+    ];
+    var body = lines.join('\n');
+    txt.textContent = body;
+    res.classList.add('show');
+    try { navigator.clipboard && navigator.clipboard.writeText(body); } catch (err) {}
+    var subject = '[하우스토리 조립 상담] ' + g('fUse') + ' · ' + g('fBudget') + '만원' + (g('fName') ? ' · ' + g('fName') : '');
+    window.location.href = 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
+
+</body>
+</html>
