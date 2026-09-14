@@ -7,6 +7,7 @@
 <meta property="og:title" content="하우스토리 · 상담형 조립 PC">
 <meta property="og:description" content="용도와 예산 두 가지만 말해 주세요. 부품 마진 0원, 한 달 3대 한정.">
 <title>하우스토리</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151A24'/%3E%3Cpath d='M14 50V28L32 16l18 12v22' fill='none' stroke='%23E9A23B' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
@@ -21,38 +22,44 @@
     --line-2: #000000;
     --btn: #000000;
     --btn-ink: #FFFFFF;
-    --red: #EF3A3A;
-    --red-soft: #FDECEC;
+    --accent: #E9A23B;
+    --accent-ink: #1A1A1A;
+    --accent-soft: #FBF1DF;
+    --dot: rgba(0,0,0,.16);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #111111;
-      --bg-2: #1A1A1A;
-      --bg-3: #242424;
-      --ink: #FFFFFF;
-      --ink-2: #B5B5B5;
-      --ink-3: #777777;
-      --line: #2C2C2C;
-      --line-2: #FFFFFF;
-      --btn: #FFFFFF;
-      --btn-ink: #000000;
-      --red: #FF5C5C;
-      --red-soft: #3A1A1A;
+      --bg: #151A24;
+      --bg-2: #1C2230;
+      --bg-3: #252C3B;
+      --ink: #F4F2EC;
+      --ink-2: #C3C8D2;
+      --ink-3: #8B92A0;
+      --line: #2C3444;
+      --line-2: #F4F2EC;
+      --btn: #F2B44C;
+      --btn-ink: #151A24;
+      --accent: #F2B44C;
+      --accent-ink: #151A24;
+      --accent-soft: #2E2A22;
+      --dot: rgba(255,255,255,.18);
     }
   }
   :root[data-theme="dark"] {
-    --bg: #111111;
-    --bg-2: #1A1A1A;
-    --bg-3: #242424;
-    --ink: #FFFFFF;
-    --ink-2: #B5B5B5;
-    --ink-3: #777777;
-    --line: #2C2C2C;
-    --line-2: #FFFFFF;
-    --btn: #FFFFFF;
-    --btn-ink: #000000;
-    --red: #FF5C5C;
-    --red-soft: #3A1A1A;
+    --bg: #151A24;
+    --bg-2: #1C2230;
+    --bg-3: #252C3B;
+    --ink: #F4F2EC;
+    --ink-2: #C3C8D2;
+    --ink-3: #8B92A0;
+    --line: #2C3444;
+    --line-2: #F4F2EC;
+    --btn: #F2B44C;
+    --btn-ink: #151A24;
+    --accent: #F2B44C;
+    --accent-ink: #151A24;
+    --accent-soft: #2E2A22;
+    --dot: rgba(255,255,255,.18);
   }
 
   * { box-sizing: border-box; }
@@ -77,16 +84,21 @@
 
   /* top bar */
   .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; border-bottom: 1px solid var(--line-2); }
-  .brand { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; text-decoration: none; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; letter-spacing: -0.04em; text-decoration: none; }
+  .brand .roof { width: 30px; height: auto; color: var(--accent); }
+  .brand small { font-weight: 500; font-size: 11px; letter-spacing: .22em; color: var(--ink-3); margin-left: 2px; }
+  .roofmark { display: block; width: 72px; height: auto; color: var(--accent); }
+  .roofmark.glow { filter: drop-shadow(0 0 10px rgba(242,180,76,.35)); }
   .nav { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
   .nav a { text-decoration: none; color: var(--ink-2); }
   .nav a:hover { color: var(--ink); }
   .top .cta { font-size: 13px; font-weight: 700; padding: 8px 14px; background: var(--btn); color: var(--btn-ink); text-decoration: none; }
 
   /* hero */
-  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; padding-block: 56px 48px; border-bottom: 1px solid var(--line); }
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; padding-block: 56px 48px; border-bottom: 1px solid var(--line); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .hero > div:first-child .roofmark { margin-bottom: 18px; }
   .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 8px; border: 1px solid var(--ink); }
-  .badge.red { border-color: var(--red); color: var(--red); }
+  .badge.accent { border-color: var(--accent); color: var(--accent); }
   .hero h1 { margin-top: 18px; font-size: clamp(32px, 4.6vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.18; }
   .hero .lead { margin-top: 18px; font-size: 16px; color: var(--ink-2); max-width: 36em; }
   .hero .lead b { color: var(--ink); font-weight: 700; }
@@ -104,7 +116,7 @@
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink-2); padding: 7px 12px; font-size: 13px; cursor: pointer; font-family: inherit; font-weight: 500; }
   .chip[aria-pressed="true"] { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); font-weight: 700; }
-  input[type=range] { width: 100%; accent-color: var(--ink); }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
   .budget { display: flex; justify-content: space-between; align-items: baseline; }
   .budget strong { font-size: 22px; font-weight: 900; letter-spacing: -0.03em; }
   .est { margin-top: 16px; padding: 14px; background: var(--bg-2); font-size: 13px; color: var(--ink-2); }
@@ -123,7 +135,7 @@
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-2); }
   .step { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); }
   .step + .step { padding-left: 20px; border-left: 1px solid var(--line); }
-  .step .n { font-size: 12px; font-weight: 700; color: var(--ink-3); }
+  .step .n { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
   .step h3 { margin-top: 6px; }
   .step p { margin-top: 6px; font-size: 13px; color: var(--ink-2); }
   .step .t { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; padding: 2px 6px; background: var(--bg-3); }
@@ -135,9 +147,9 @@
   .build .art .pc { position: absolute; inset: 0; display: grid; place-items: center; }
   .build .art svg { width: 46%; height: auto; }
   .build .art .tag { position: absolute; left: 12px; top: 12px; font-size: 11px; font-weight: 700; padding: 3px 7px; background: var(--bg); color: var(--ink); }
-  .build .art .tag.red { background: var(--red); color: #fff; }
+  .build .art .tag.accent { background: var(--accent); color: var(--accent-ink); }
   .build .body { padding-top: 14px; }
-  .build .brandline { font-size: 12px; font-weight: 700; color: var(--ink-3); }
+  .build .brandline { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .06em; }
   .build h3 { margin-top: 4px; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
   .build .price { margin-top: 8px; display: flex; align-items: baseline; gap: 8px; }
   .build .price b { font-size: 20px; font-weight: 900; letter-spacing: -0.03em; }
@@ -165,11 +177,11 @@
   .capacity p { font-size: 13px; color: var(--ink-2); margin-top: 12px; max-width: 34em; }
   .bars { display: flex; gap: 4px; margin-top: 14px; max-width: 240px; }
   .bars i { flex: 1; height: 6px; background: var(--line); }
-  .bars i.on { background: var(--ink); }
+  .bars i.on { background: var(--accent); }
   .fees { border-top: 1px solid var(--line-2); font-size: 14px; }
   .fees div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
   .fees b { font-weight: 700; }
-  .fees .free { color: var(--red); font-weight: 700; }
+  .fees .free { color: var(--accent); font-weight: 700; }
   .note { font-size: 12px; color: var(--ink-3); }
 
   .faq { border-top: 1px solid var(--line-2); }
@@ -228,7 +240,7 @@
 
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#">하우스토리</a>
+    <a class="brand" href="#"><svg class="roof" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>하우스토리 <small>HAUSTORY</small></a>
     <nav class="nav">
       <a href="#how">진행 방식</a>
       <a href="#builds">조립 사례</a>
@@ -240,7 +252,8 @@
 
   <section class="hero">
     <div>
-      <span class="badge red">이달 조립 가능 2대 남음</span>
+      <svg class="roofmark glow" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
+      <span class="badge accent">이달 조립 가능 2대 남음</span>
       <h1>하우스토리에선<br>부품 이름 몰라도 돼요.<br>뭐 할 건지, 얼마까진지만.</h1>
       <p class="lead">견적 사이트에서 CPU 고르다 포기한 적 있으시죠. <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
       <div class="facts">
@@ -292,7 +305,7 @@
     <div class="builds">
       <article class="build">
         <div class="art">
-          <span class="tag red">150만원 맞춤</span>
+          <span class="tag accent">150만원 맞춤</span>
           <div class="pc" aria-hidden="true">
             <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-3)">
               <rect x="30" y="20" width="140" height="200" rx="4"/>
@@ -434,7 +447,7 @@
   </section>
 
   <footer>
-    <span><b>하우스토리</b> &nbsp;·&nbsp; 부업으로 운영해요 &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
+    <span><b>하우스토리</b> <span style="letter-spacing:.2em;font-size:11px">HAUSTORY</span> &nbsp;·&nbsp; 부업으로 운영해요 &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
     <span>© 2026 하우스토리 · 신청하신 연락처는 상담에만 쓰고 보관하지 않아요</span>
   </footer>
 </div>
@@ -512,7 +525,7 @@
     if (missing.length) {
       res.classList.add('show');
       ok.textContent = missing.join(', ') + '을(를) 적어 주셔야 연락드릴 수 있어요.';
-      ok.style.color = 'var(--red)';
+      ok.style.color = 'var(--accent)';
       txt.textContent = '';
       return;
     }
@@ -534,7 +547,7 @@
         var lines = ['[하우스토리 조립 상담 신청]', '이름: ' + (g('fName') || '(미기재)'), '연락처: ' + g('fContact'), '용도: ' + g('fUse'), '예산: ' + g('fBudget') + '만원 (본체만)', '원하는 것: ' + (g('fMemo') || '(없음)')];
         var body = lines.join('\n');
         res.classList.add('show');
-        ok.style.color = 'var(--red)';
+        ok.style.color = 'var(--accent)';
         ok.textContent = '전송이 안 됐어요. 아래 내용을 복사해서 howsdoyi@gmail.com 으로 보내 주세요.';
         txt.textContent = body;
         try { navigator.clipboard && navigator.clipboard.writeText(body); } catch (err) {}
