@@ -402,10 +402,11 @@
           <div><span>답장</span>평일 저녁, 주말에 드려요 (본업이 있어요)</div>
         </div>
       </div>
-      <form class="card" id="form" novalidate>
+      <form class="card" id="form" action="https://formspree.io/f/xoeqorgz" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
         <div class="row">
           <div class="f"><label for="fUse">용도</label>
-            <select id="fUse">
+            <select id="fUse" name="용도">
               <option value="게임">게임</option>
               <option value="사무·인강">사무·인강</option>
               <option value="영상 편집">영상 편집</option>
@@ -413,19 +414,19 @@
               <option value="기타">기타 (메모에 적어 주세요)</option>
             </select>
           </div>
-          <div class="f"><label for="fBudget">예산 (본체만, 만원)</label><input id="fBudget" type="number" inputmode="numeric" placeholder="150" min="30" max="1000"></div>
+          <div class="f"><label for="fBudget">예산 (본체만, 만원)</label><input id="fBudget" name="예산(만원)" type="number" inputmode="numeric" placeholder="150" min="30" max="1000"></div>
         </div>
         <div class="row">
-          <div class="f"><label for="fName">부르실 이름</label><input id="fName" type="text" placeholder="홍길동"></div>
-          <div class="f"><label for="fContact">연락처</label><input id="fContact" type="text" placeholder="이메일이나 전화번호"><span class="hint">편한 쪽 하나만요.</span></div>
+          <div class="f"><label for="fName">부르실 이름</label><input id="fName" name="이름" type="text" placeholder="홍길동"></div>
+          <div class="f"><label for="fContact">연락처</label><input id="fContact" name="연락처" type="text" placeholder="이메일이나 전화번호"><span class="hint">편한 쪽 하나만요.</span></div>
         </div>
-        <div class="f"><label for="fMemo">하고 싶은 게임이나 프로그램, 원하는 것</label><textarea id="fMemo" placeholder="예: 발로란트, 배그 240Hz로 돌리고 싶어요. 화이트 케이스면 좋겠어요."></textarea></div>
+        <div class="f"><label for="fMemo">하고 싶은 게임이나 프로그램, 원하는 것</label><textarea id="fMemo" name="원하는 것" placeholder="예: 발로란트, 배그 240Hz로 돌리고 싶어요. 화이트 케이스면 좋겠어요."></textarea></div>
         <div class="actions">
-          <button type="submit" class="btn btn-primary">메일로 신청 보내기</button>
-          <span class="note">누르면 메일 앱이 열려요. 안 열리면 아래 내용을 복사해서 howsdoyi@gmail.com 으로 보내 주세요.</span>
+          <button type="submit" class="btn btn-primary" id="submitBtn">상담 신청 보내기</button>
+          <span class="note">보내면 하우스토리 메일함으로 바로 들어가요. 하루 안에 답장드려요.</span>
         </div>
         <div class="result" id="result">
-          <div class="ok">메일 앱을 열었어요. 열리지 않으면 아래 내용을 복사해서 보내 주세요.</div>
+          <div class="ok"></div>
           <pre id="resultText"></pre>
         </div>
       </form>
@@ -496,15 +497,18 @@
   document.getElementById('fBudget').addEventListener('input', function () { this.dataset.touched = '1'; });
   render();
 
-  document.getElementById('form').addEventListener('submit', function (e) {
+  var form = document.getElementById('form');
+  var ENDPOINT = form.getAttribute('action');
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
     var g = function (id) { return (document.getElementById(id).value || '').trim(); };
-    var missing = [];
-    if (!g('fBudget')) missing.push('예산');
-    if (!g('fContact')) missing.push('연락처');
     var res = document.getElementById('result');
     var txt = document.getElementById('resultText');
     var ok = res.querySelector('.ok');
+    var btn = document.getElementById('submitBtn');
+    var missing = [];
+    if (!g('fBudget')) missing.push('예산');
+    if (!g('fContact')) missing.push('연락처');
     if (missing.length) {
       res.classList.add('show');
       ok.textContent = missing.join(', ') + '을(를) 적어 주셔야 연락드릴 수 있어요.';
@@ -512,22 +516,30 @@
       txt.textContent = '';
       return;
     }
-    ok.textContent = '메일 앱을 열었어요. 열리지 않으면 아래 내용을 복사해서 보내 주세요.';
-    ok.style.color = '';
-    var lines = [
-      '[하우스토리 조립 상담 신청]',
-      '이름: ' + (g('fName') || '(미기재)'),
-      '연락처: ' + g('fContact'),
-      '용도: ' + g('fUse'),
-      '예산: ' + g('fBudget') + '만원 (본체만)',
-      '원하는 것: ' + (g('fMemo') || '(없음)')
-    ];
-    var body = lines.join('\n');
-    txt.textContent = body;
-    res.classList.add('show');
-    try { navigator.clipboard && navigator.clipboard.writeText(body); } catch (err) {}
     var subject = '[하우스토리 조립 상담] ' + g('fUse') + ' · ' + g('fBudget') + '만원' + (g('fName') ? ' · ' + g('fName') : '');
-    window.location.href = 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    var data = new FormData(form);
+    data.append('_subject', subject);
+    btn.disabled = true; btn.textContent = '보내는 중...';
+    fetch(ENDPOINT, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : r.json().then(function (j) { throw j; }); })
+      .then(function () {
+        res.classList.add('show');
+        ok.style.color = '';
+        ok.textContent = '접수됐어요. ' + (g('fName') || '고객') + '님, 하루 안에 ' + g('fContact') + ' 로 연락드릴게요.';
+        txt.textContent = '';
+        form.reset();
+        btn.textContent = '접수 완료';
+      })
+      .catch(function () {
+        var lines = ['[하우스토리 조립 상담 신청]', '이름: ' + (g('fName') || '(미기재)'), '연락처: ' + g('fContact'), '용도: ' + g('fUse'), '예산: ' + g('fBudget') + '만원 (본체만)', '원하는 것: ' + (g('fMemo') || '(없음)')];
+        var body = lines.join('\n');
+        res.classList.add('show');
+        ok.style.color = 'var(--red)';
+        ok.textContent = '전송이 안 됐어요. 아래 내용을 복사해서 howsdoyi@gmail.com 으로 보내 주세요.';
+        txt.textContent = body;
+        try { navigator.clipboard && navigator.clipboard.writeText(body); } catch (err) {}
+        btn.disabled = false; btn.textContent = '다시 보내기';
+      });
   });
 })();
 </script>
