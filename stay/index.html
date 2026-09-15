@@ -68,6 +68,12 @@
   .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; padding:14px 20px; font-weight:700; font-size:15px; cursor:pointer; text-decoration:none; background:var(--btn); color:var(--btn-ink); }
   .btn.line { background:transparent; color:var(--ink); border:1px solid var(--ink); }
   .btns { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .guide { display:inline-flex; border:1px solid var(--ink); }
+  .guide a { padding:14px 16px; font-weight:700; font-size:15px; text-decoration:none; color:var(--ink); }
+  .guide a + a { border-left:1px solid var(--ink); }
+  .guide a small { display:block; font-size:11px; font-weight:500; color:var(--ink-3); line-height:1.2; }
+  .guide a:hover { background:var(--btn); color:var(--btn-ink); }
+  .guide a:hover small { color:inherit; }
   .note { font-size:12px; color:var(--ink-3); margin-top:10px; }
   .cross { margin-top:44px; padding:22px 24px; background:var(--accent-soft); border-left:3px solid var(--accent); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
   .cross b { font-weight:700; }
@@ -109,7 +115,7 @@
     <div>
       <span class="kicker">하우스토리 스테이 · 새절</span>
       <h1>머무는 사람이<br>편한 집을 만들어요.</h1>
-      <p class="lead">서울 은평구 새절역 인근의 작은 스테이예요. <b>실내화, 조용한 밤, 깨끗한 주방</b>처럼 머무는 동안 신경 쓰이지 않아야 할 것들을 먼저 챙겨 두었어요. 외국인 손님을 위한 <b>4개 국어 가이드북</b>과 한국 번호 없이 쓰는 배달 앱 안내까지 준비돼 있어요.</p>
+      <p class="lead">서울 은평구 새절역 인근의 작은 스테이예요. <b>실내화, 조용한 밤, 깨끗한 주방</b>처럼 머무는 동안 신경 쓰이지 않아야 할 것들을 먼저 챙겨 두었어요. 외국인 손님을 위한 <b>한국어·영어 가이드북</b>(중국어·일본어 포함)과 한국 번호 없이 쓰는 배달 앱 안내까지 준비돼 있어요.</p>
       <div class="facts">
         <div><b>15:00</b><span>체크인</span></div>
         <div><b>11:00</b><span>체크아웃</span></div>
@@ -118,7 +124,7 @@
       </div>
       <div class="btns">
         <a class="btn" href="#book">예약 문의</a>
-        <a class="btn line" href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">게스트 가이드북 보기</a>
+        <div class="guide" aria-label="게스트 가이드북"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">가이드북<small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
       </div>
     </div>
     <div class="photo" id="photo">
@@ -180,7 +186,7 @@
         <p>예약은 에어비앤비에서 받고 있어요. 날짜와 인원을 알려 주시면 가능 여부를 바로 답해 드릴게요. 확정되면 상세 주소와 출입 방법이 담긴 가이드북 링크를 보내 드려요.</p>
         <div class="btns">
           <a class="btn" href="mailto:howsdoyi@gmail.com?subject=%ED%95%98%EC%9A%B0%EC%8A%A4%ED%86%A0%EB%A6%AC%20%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%98%88%EC%95%BD%20%EB%AC%B8%EC%9D%98">메일로 예약 문의</a>
-          <a class="btn line" href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">가이드북 미리 보기</a>
+          <div class="guide" aria-label="게스트 가이드북"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">가이드북<small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
         </div>
         <p class="note">에어비앤비 예약 페이지 링크는 곧 연결돼요.</p>
       </div>
