@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="하우스토리 — 부품 이름 몰라도 되는 상담형 조립 PC. 용도와 예산만 말하면 구성부터 조립, 테스트까지.">
-<meta property="og:title" content="하우스토리 · 조립 컴퓨터 맞춤 서비스">
+<meta property="og:title" content="하우스토리 테크 · 조립 컴퓨터 맞춤 서비스">
 <meta property="og:description" content="용도와 예산 두 가지만 말해 주세요. 부품 마진 0원, 조립비 수익 10% 기부, 한 달 10대 한정.">
-<title>하우스토리 · 조립 컴퓨터 맞춤 서비스</title>
+<title>하우스토리 테크 · 조립 컴퓨터 맞춤 서비스</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151A24'/%3E%3Cpath d='M14 50V28L32 16l18 12v22' fill='none' stroke='%23E9A23B' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
@@ -89,6 +89,22 @@
   .brand small { font-weight: 500; font-size: 11px; letter-spacing: .22em; color: var(--ink-3); margin-left: 2px; }
   .roofmark { display: block; width: 72px; height: auto; color: var(--accent); }
   .roofmark.glow { filter: drop-shadow(0 0 10px rgba(242,180,76,.35)); }
+  .switch { display: inline-flex; border: 1px solid var(--line); margin-left: 14px; }
+  .switch a { padding: 5px 10px; font-size: 12px; font-weight: 700; text-decoration: none; color: var(--ink-3); letter-spacing: .02em; }
+  .switch a + a { border-left: 1px solid var(--line); }
+  .switch a[aria-current="page"] { background: var(--btn); color: var(--btn-ink); }
+  .story { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--line-2); }
+  .story div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--line); }
+  .story div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .story .k { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+  .story h3 { margin-top: 6px; font-size: 17px; }
+  .story p { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+  .brands { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .brands h4 { margin: 0; font-size: 15px; font-weight: 900; letter-spacing: -0.02em; }
+  .brands h4 span { font-weight: 500; font-size: 11px; letter-spacing: .2em; color: var(--ink-3); margin-left: 8px; }
+  .brands p { margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+  .brands a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .brands .here { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 6px; background: var(--accent); color: var(--accent-ink); margin-left: 6px; vertical-align: middle; }
   .nav { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
   .nav a { text-decoration: none; color: var(--ink-2); }
   .nav a:hover { color: var(--ink); }
@@ -265,7 +281,8 @@
     .nav { display: none; }
     .steps { grid-template-columns: 1fr 1fr; }
     .step:nth-child(3) { padding-left: 0; border-left: 0; }
-    .builds, .why, .capacity, .apply, .row { grid-template-columns: 1fr; }
+    .builds, .why, .capacity, .apply, .row, .story, .brands { grid-template-columns: 1fr; }
+    .story div + div { padding-left: 0; border-left: 0; }
     .why div + div { padding-left: 0; border-left: 0; }
     .capacity { gap: 28px; }
     section.block { padding-block: 36px; }
@@ -288,12 +305,14 @@
 <div class="wrap">
   <header class="top">
     <a class="brand" href="#"><svg class="roof" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>하우스토리 <small>HOWS.TORY</small></a>
+    <div class="switch" aria-label="하우스토리 사업"><a href="#brands">스테이</a><a href="#" aria-current="page">테크</a></div>
     <nav class="nav">
       <a href="#how">진행 방식</a>
       <a href="#builds">조립 사례</a>
       <a href="#reviews" id="navReviews" hidden>후기</a>
       <a href="#price">비용</a>
       <a href="#give">약속</a>
+      <a href="#story">이야기</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="cta" href="#apply">상담 신청</a>
@@ -302,9 +321,9 @@
   <section class="hero">
     <div>
       <svg class="roofmark glow" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
-      <div class="kicker"><h2>조립 컴퓨터 맞춤 서비스</h2><span class="badge accent" id="slotBadge">이달 조립 가능 9대 남음</span></div>
-      <h1>하우스토리에선<br>부품 이름 몰라도 돼요.<br>뭐 할 건지, 얼마까진지만.</h1>
-      <p class="lead">견적 사이트에서 CPU 고르다 포기한 적 있으시죠. <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
+      <div class="kicker"><h2>하우스토리 테크 · 조립 컴퓨터 맞춤 서비스</h2><span class="badge accent" id="slotBadge">이달 조립 가능 9대 남음</span></div>
+      <h1>부품 이름 몰라도 돼요.<br>뭐 할 건지,<br>얼마까진지만 말해 주세요.</h1>
+      <p class="lead">하우스토리는 <b>머무는 집(스테이)</b>과 <b>쓰는 컴퓨터(테크)</b>, 두 가지를 정성껏 만드는 작은 브랜드예요. 테크에서는 <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
       <div class="promise"><span class="pct">10%</span><span><b>조립 실력을 나누는 일이라, 조립비 수익의 10%는 기부해요.</b><br>부품엔 마진을 안 붙이고, 제 몫인 조립비에서 떼어 교회·선교단체·성로원에 보냅니다. 기부 내역은 이 페이지에 그대로 올려요.</span></div>
       <div class="facts">
         <div><b>0원</b><span>부품 마진 · 영수증 그대로</span></div>
@@ -455,6 +474,18 @@
     </div>
   </section>
 
+  <section class="block" id="story">
+    <div class="head">
+      <h2>왜 컴퓨터냐면</h2>
+      <p>하우스토리 테크가 시작된 이야기</p>
+    </div>
+    <div class="story">
+      <div><div class="k">01 · 집</div><h3>하우스토리는 집에서 시작했어요</h3><p>머무는 사람이 편하도록 공간을 하나하나 고르고 맞추는 일, 그게 하우스토리 스테이예요. 손님이 "여기 진짜 편했다"고 말할 때가 제일 좋았어요.</p></div>
+      <div><div class="k">02 · 컴퓨터</div><h3>컴퓨터도 같은 일이더라고요</h3><p>쓰는 사람에 맞춰 부품을 고르고, 배선을 정리하고, 소음과 온도를 잡는 것. 집을 꾸미는 일과 똑같았어요. 그래서 조립 실력을 나누는 하우스토리 테크를 열었어요.</p></div>
+      <div><div class="k">03 · 나눔</div><h3>그래서 마진 없이, 10%는 기부해요</h3><p>테크는 돈보다 재능을 나누는 쪽이에요. 부품엔 마진을 안 붙이고, 제 몫인 조립비의 10%는 교회·선교단체·성로원에 보내요. 한 달 10대까지만 받는 것도 그래서예요.</p></div>
+    </div>
+  </section>
+
   <section class="block" id="give">
     <div class="head">
       <h2>하우스토리의 약속</h2>
@@ -540,6 +571,10 @@
     </div>
   </section>
 
+  <section class="brands" id="brands">
+    <div><h4>하우스토리 스테이 <span>HOWS.TORY STAY</span></h4><p>머무는 사람이 편한 집을 만들어요. 스테이 소개와 예약 안내는 <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a> 으로 문의해 주세요.</p></div>
+    <div><h4>하우스토리 테크 <span>HOWS.TORY TECH</span><span class="here">지금 여기</span></h4><p>용도와 예산만 말하면 되는 조립 컴퓨터 맞춤 서비스. 부품 마진 0원, 조립비 수익 10% 기부. <a href="#apply">상담 신청</a></p></div>
+  </section>
   <footer>
     <span><b>하우스토리</b> <span style="letter-spacing:.2em;font-size:11px">HOWS.TORY</span> &nbsp;·&nbsp; 부업으로 운영해요 &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
     <span>© 2026 하우스토리 · 신청하신 연락처는 상담에만 쓰고 보관하지 않아요</span>
