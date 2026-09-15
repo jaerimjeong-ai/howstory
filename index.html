@@ -150,7 +150,7 @@
   .build .art.receipt svg.paper { position: absolute; inset: 0; width: 100%; height: 100%; }
   .build .art.photo { background-color: var(--bg-2); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
   .build .art.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 4%; box-sizing: border-box; filter: drop-shadow(0 12px 22px rgba(0,0,0,.18)); }
-  .thumbs { display: flex; gap: 6px; margin-top: 6px; }
+  .thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   .thumbs button { flex: 0 0 64px; height: 64px; padding: 4px; border: 1px solid var(--line); background: var(--bg-2); cursor: pointer; }
   .thumbs button[aria-pressed="true"] { border-color: var(--accent); }
   .thumbs img { width: 100%; height: 100%; object-fit: contain; }
@@ -319,7 +319,10 @@
         <div class="thumbs" role="group" aria-label="사진 고르기">
           <button type="button" data-src="img/build001-front.webp" aria-pressed="true"><img src="img/build001-front.webp" alt="정면"></button>
           <button type="button" data-src="img/build001-inside.webp" aria-pressed="false"><img src="img/build001-inside.webp" alt="내부"></button>
-          <button type="button" data-src="img/build001-side.webp" aria-pressed="false"><img src="img/build001-side.webp" alt="측면"></button>
+          <button type="button" data-src="img/build001-side.webp" aria-pressed="false"><img src="img/build001-side.webp" alt="내부 2"></button>
+          <button type="button" data-src="img/build001-side-off.webp" aria-pressed="false"><img src="img/build001-side-off.webp" alt="측면, 전원 끈 상태"></button>
+          <button type="button" data-src="img/build001-angle.webp" aria-pressed="false"><img src="img/build001-angle.webp" alt="정면 사선"></button>
+          <button type="button" data-src="img/build001-top.webp" aria-pressed="false"><img src="img/build001-top.webp" alt="상단 포트"></button>
         </div>
         <div class="body">
           <div class="brandline">게임용 · 화이트 · 직접 수령</div>
