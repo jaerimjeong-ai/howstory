@@ -84,7 +84,7 @@
 
   /* top bar */
   .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; border-bottom: 1px solid var(--line-2); }
-  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; letter-spacing: -0.04em; text-decoration: none; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; letter-spacing: -0.04em; text-decoration: none; white-space: nowrap; }
   .brand .roof { width: 30px; height: auto; color: var(--accent); }
   .brand small { font-weight: 500; font-size: 11px; letter-spacing: .22em; color: var(--ink-3); margin-left: 2px; }
   .roofmark { display: block; width: 72px; height: auto; color: var(--accent); }
@@ -92,7 +92,7 @@
   .nav { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
   .nav a { text-decoration: none; color: var(--ink-2); }
   .nav a:hover { color: var(--ink); }
-  .top .cta { font-size: 13px; font-weight: 700; padding: 8px 14px; background: var(--btn); color: var(--btn-ink); text-decoration: none; }
+  .top .cta { font-size: 13px; font-weight: 700; padding: 8px 14px; background: var(--btn); color: var(--btn-ink); text-decoration: none; white-space: nowrap; }
 
   /* hero */
   .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; padding-block: 56px 48px; border-bottom: 1px solid var(--line); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
@@ -110,7 +110,7 @@
   .give .big { font-size: 34px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
   .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 8px; border: 1px solid var(--ink); }
   .badge.accent { border-color: var(--accent); color: var(--accent); }
-  .hero h1 { margin-top: 18px; font-size: clamp(32px, 4.6vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.18; }
+  .hero h1 { margin-top: 18px; font-size: clamp(27px, 4.6vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.18; }
   .hero .lead { margin-top: 18px; font-size: 16px; color: var(--ink-2); max-width: 36em; }
   .hero .lead b { color: var(--ink); font-weight: 700; }
   .facts { margin-top: 24px; display: grid; grid-template-columns: repeat(4, auto); gap: 0; width: fit-content; border-top: 1px solid var(--line-2); }
