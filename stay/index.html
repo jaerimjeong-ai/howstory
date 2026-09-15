@@ -4,33 +4,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="하우스토리 스테이 — 서울 은평구 새절역 인근, 머무는 사람이 편한 집. 체크인 15:00, 체크아웃 11:00, 무료 주차 1대, 4개 국어 가이드북.">
-<meta property="og:title" content="하우스토리 스테이">
+<meta property="og:title" content="하우스토리 스테이 · HOWS.TORY STAY">
 <meta property="og:description" content="서울 은평구 새절역 인근, 머무는 사람이 편한 집. 외국인 손님도 편한 4개 국어 가이드북.">
 <title>하우스토리 스테이</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151A24'/%3E%3Cpath d='M14 50V28L32 16l18 12v22' fill='none' stroke='%23E9A23B' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
 <style>
   :root { --bg:#FFFFFF; --bg-2:#F7F7F7; --bg-3:#EFEFEF; --ink:#000; --ink-2:#555; --ink-3:#999; --line:#E5E5E5; --line-2:#000; --btn:#000; --btn-ink:#FFF; --accent:#E9A23B; --accent-ink:#1A1A1A; --accent-soft:#FBF1DF; --dot:rgba(0,0,0,.16); }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#151A24; --bg-2:#1C2230; --bg-3:#252C3B; --ink:#F4F2EC; --ink-2:#C3C8D2; --ink-3:#8B92A0; --line:#2C3444; --line-2:#F4F2EC; --btn:#F2B44C; --btn-ink:#151A24; --accent:#F2B44C; --accent-ink:#151A24; --accent-soft:#2E2A22; --dot:rgba(255,255,255,.18); } }
   :root[data-theme="dark"] { --bg:#151A24; --bg-2:#1C2230; --bg-3:#252C3B; --ink:#F4F2EC; --ink-2:#C3C8D2; --ink-3:#8B92A0; --line:#2C3444; --line-2:#F4F2EC; --btn:#F2B44C; --btn-ink:#151A24; --accent:#F2B44C; --accent-ink:#151A24; --accent-soft:#2E2A22; --dot:rgba(255,255,255,.18); }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family: Pretendard, "Pretendard Variable", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size:15px; line-height:1.6; letter-spacing:-0.01em; -webkit-font-smoothing:antialiased; }
+  html[lang="zh"] body { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; letter-spacing:0; }
+  html[lang="ja"] body { font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif; letter-spacing:0; }
+  html[lang="en"] body { letter-spacing:0; }
   a { color: inherit; }
+  button, select { font: inherit; color: inherit; }
   h1, h2, h3 { margin:0; text-wrap: balance; line-height:1.25; font-weight:700; letter-spacing:-0.02em; }
   h2 { font-size: 22px; }
   p { margin: 0; }
   .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
-  .top { display:flex; align-items:center; justify-content:space-between; gap:16px; height:60px; border-bottom:1px solid var(--line-2); }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:12px; height:60px; border-bottom:1px solid var(--line-2); }
   .brand { display:inline-flex; align-items:center; gap:10px; font-weight:900; font-size:20px; letter-spacing:-0.04em; text-decoration:none; white-space:nowrap; }
   .brand svg { width:30px; height:auto; color:var(--accent); }
   .brand small { font-weight:500; font-size:11px; letter-spacing:.22em; color:var(--ink-3); }
   .switch { display:inline-flex; border:1px solid var(--line); margin-left:14px; }
-  .switch a { padding:5px 10px; font-size:12px; font-weight:700; text-decoration:none; color:var(--ink-3); }
+  .switch a { padding:5px 10px; font-size:12px; font-weight:700; text-decoration:none; color:var(--ink-3); white-space:nowrap; }
   .switch a + a { border-left:1px solid var(--line); }
   .switch a[aria-current="page"] { background:var(--btn); color:var(--btn-ink); }
   .nav { display:flex; gap:22px; font-size:14px; font-weight:500; }
-  .nav a { text-decoration:none; color:var(--ink-2); }
+  .nav a { text-decoration:none; color:var(--ink-2); white-space:nowrap; }
+  .right { display:flex; align-items:center; gap:8px; }
+  .lang { position:relative; }
+  .lang select { appearance:none; -webkit-appearance:none; padding:7px 28px 7px 10px; border:1px solid var(--line); background:var(--bg); font-size:13px; font-weight:700; cursor:pointer; border-radius:0; }
+  .lang::after { content:""; position:absolute; right:10px; top:50%; width:6px; height:6px; border-right:1.5px solid var(--ink-2); border-bottom:1.5px solid var(--ink-2); transform:translateY(-70%) rotate(45deg); pointer-events:none; }
+  .lang select:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
   .cta { font-size:13px; font-weight:700; padding:8px 14px; background:var(--btn); color:var(--btn-ink); text-decoration:none; white-space:nowrap; }
   .hero { display:grid; grid-template-columns: 1.05fr .95fr; gap:40px; align-items:stretch; padding-block:48px; border-bottom:1px solid var(--line); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size:22px 22px; }
   .kicker { display:inline-block; font-size:15px; font-weight:900; letter-spacing:.02em; padding:6px 12px; background:var(--btn); color:var(--btn-ink); }
@@ -42,9 +51,7 @@
   .facts div + div { padding-left:22px; border-left:1px solid var(--line); }
   .facts b { display:block; font-size:22px; font-weight:900; letter-spacing:-0.03em; }
   .facts span { font-size:12px; color:var(--ink-2); }
-  .photo { position:relative; min-height:320px; background:var(--bg-2); border:1px solid var(--line); display:grid; place-items:center; overflow:hidden; }
-  .photo .ph { text-align:center; color:var(--ink-3); font-size:13px; padding:20px; }
-  .photo .ph svg { width:72px; height:auto; color:var(--accent); display:block; margin:0 auto 10px; }
+  .photo { position:relative; min-height:320px; background:var(--bg-2); border:1px solid var(--line); overflow:hidden; }
   .photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   section.block { padding-block:44px; border-bottom:1px solid var(--line); }
   .gallery { display:grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 240px 240px; gap:8px; }
@@ -70,7 +77,7 @@
   .amen b { display:block; font-size:14px; }
   .amen span { font-size:12px; color:var(--ink-2); }
   .rules { border-top:1px solid var(--line-2); }
-  .rules div { display:grid; grid-template-columns:150px 1fr; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .rules div { display:grid; grid-template-columns:170px 1fr; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14px; }
   .rules b { font-weight:700; }
   .rules span { color:var(--ink-2); }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
@@ -90,9 +97,9 @@
   .cross p { font-size:14px; color:var(--ink-2); margin-top:4px; }
   footer { padding-block:28px 48px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
   footer b { color:var(--ink); font-weight:900; font-size:14px; letter-spacing:-0.03em; }
+  @media (max-width: 960px) { .nav { display:none; } }
   @media (max-width: 860px) {
     .hero { grid-template-columns:1fr; gap:24px; padding-block:32px; }
-    .nav { display:none; }
     .cols3, .two { grid-template-columns:1fr; }
     .cols3 > div + div { padding-left:0; border-left:0; }
     .amen { grid-template-columns:1fr 1fr; }
@@ -105,143 +112,257 @@
     .facts div + div { padding-left:0; border-left:0; }
     .facts div:nth-child(2n) { padding-left:22px; border-left:1px solid var(--line); }
   }
+  @media (max-width: 560px) { .brand small { display:none; } .switch { margin-left:6px; } .cta { display:none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="../">
-      <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
-      하우스토리 <small>HOWS.TORY</small>
-    </a>
-    <div class="switch" aria-label="하우스토리 사업"><a href="./" aria-current="page">스테이</a><a href="../">테크</a></div>
+    <div style="display:flex;align-items:center;min-width:0">
+      <a class="brand" href="../">
+        <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
+        하우스토리 <small>HOWS.TORY</small>
+      </a>
+      <div class="switch" aria-label="HOWS.TORY"><a href="./" aria-current="page" data-i="sw_stay">스테이</a><a href="../" data-i="sw_tech">테크</a></div>
+    </div>
     <nav class="nav">
-      <a href="#photos">사진</a>
-      <a href="#space">공간</a>
-      <a href="#amen">편의시설</a>
-      <a href="#rules">이용 안내</a>
-      <a href="#book">예약</a>
+      <a href="#photos" data-i="nav_photos">사진</a>
+      <a href="#space" data-i="nav_space">공간</a>
+      <a href="#amen" data-i="nav_amen">편의시설</a>
+      <a href="#rules" data-i="nav_rules">이용 안내</a>
+      <a href="#book" data-i="nav_book">예약</a>
     </nav>
-    <a class="cta" href="#book">예약 문의</a>
+    <div class="right">
+      <div class="lang"><select id="lang" aria-label="Language">
+        <option value="ko">한국어</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+      </select></div>
+      <a class="cta" href="#book" data-i="cta">예약 문의</a>
+    </div>
   </header>
 
   <section class="hero">
     <div>
-      <span class="kicker">하우스토리 스테이 · 새절</span>
-      <h1>머무는 사람이<br>편한 집을 만들어요.</h1>
-      <p class="lead">서울 은평구 새절역 인근의 작은 스테이예요. <b>실내화, 조용한 밤, 깨끗한 주방</b>처럼 머무는 동안 신경 쓰이지 않아야 할 것들을 먼저 챙겨 두었어요. 외국인 손님을 위한 <b>한국어·영어 가이드북</b>(중국어·일본어 포함)과 한국 번호 없이 쓰는 배달 앱 안내까지 준비돼 있어요.</p>
+      <span class="kicker" data-i="kicker">하우스토리 스테이 · 새절</span>
+      <h1 data-i="h1">머무는 사람이<br>편한 집을 만들어요.</h1>
+      <p class="lead" data-i="lead">서울 은평구 새절역 인근의 작은 스테이예요. <b>실내화, 조용한 밤, 깨끗한 주방</b>처럼 머무는 동안 신경 쓰이지 않아야 할 것들을 먼저 챙겨 두었어요. 외국인 손님을 위한 <b>한국어·영어 가이드북</b>(중국어·일본어 포함)과 한국 번호 없이 쓰는 배달 앱 안내까지 준비돼 있어요.</p>
       <div class="facts">
-        <div><b>15:00</b><span>체크인</span></div>
-        <div><b>11:00</b><span>체크아웃</span></div>
-        <div><b>1대</b><span>무료 주차</span></div>
-        <div><b>4개 국어</b><span>가이드북 KR·EN·CN·JP</span></div>
+        <div><b>15:00</b><span data-i="f_in">체크인</span></div>
+        <div><b>11:00</b><span data-i="f_out">체크아웃</span></div>
+        <div><b data-i="f_park_v">1대</b><span data-i="f_park">무료 주차</span></div>
+        <div><b data-i="f_lang_v">4개 국어</b><span data-i="f_lang">가이드북 KR·EN·CN·JP</span></div>
       </div>
       <div class="btns">
-        <a class="btn" href="#book">예약 문의</a>
-        <div class="guide" aria-label="게스트 가이드북"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">가이드북<small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
+        <a class="btn" href="#book" data-i="cta">예약 문의</a>
+        <div class="guide" aria-label="Guide Book"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener"><span data-i="guide">가이드북</span><small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
       </div>
     </div>
     <div class="photo" id="photo">
-      <img src="img/dining.webp" alt="하우스토리 스테이 거실, 흰 식탁과 원목 벤치, 모네 포스터" fetchpriority="high">
+      <img src="img/dining.webp" alt="" fetchpriority="high">
     </div>
   </section>
 
   <section class="block" id="photos">
     <div class="head">
-      <h2>공간 둘러보기</h2>
-      <p>사진을 누르면 크게 보여요</p>
+      <h2 data-i="ph_h">공간 둘러보기</h2>
+      <p data-i="ph_p">사진을 누르면 크게 보여요</p>
     </div>
     <div class="gallery">
-      <a href="img/dining.webp" data-lb="1"><img src="img/dining.webp" alt="거실 식탁" loading="lazy"><span>거실 · 식탁</span></a>
-      <a href="img/bedroom.webp" data-lb="1"><img src="img/bedroom-sm.webp" alt="침실, 침대 두 개" loading="lazy"><span>침실</span></a>
-      <a href="img/shelf.webp" data-lb="1"><img src="img/shelf-sm.webp" alt="선반과 조명" loading="lazy"><span>거실 한켠</span></a>
-      <a href="img/dresser.webp" data-lb="1"><img src="img/dresser-sm.webp" alt="화장대와 침대 옆 조명" loading="lazy"><span>화장대</span></a>
+      <a href="img/dining.webp" data-lb="1"><img src="img/dining.webp" alt="" loading="lazy"><span data-i="g1">거실 · 식탁</span></a>
+      <a href="img/bedroom.webp" data-lb="1"><img src="img/bedroom-sm.webp" alt="" loading="lazy"><span data-i="g2">침실</span></a>
+      <a href="img/shelf.webp" data-lb="1"><img src="img/shelf-sm.webp" alt="" loading="lazy"><span data-i="g3">거실 한켠</span></a>
+      <a href="img/dresser.webp" data-lb="1"><img src="img/dresser-sm.webp" alt="" loading="lazy"><span data-i="g4">화장대</span></a>
     </div>
   </section>
 
   <section class="block" id="space">
     <div class="head">
-      <h2>이런 곳이에요</h2>
-      <p>하우스토리 스테이 · 은평구 새절</p>
+      <h2 data-i="sp_h">이런 곳이에요</h2>
+      <p data-i="sp_p">하우스토리 스테이 · 은평구 새절</p>
     </div>
     <div class="cols3">
-      <div><div class="k">위치</div><h3>새절역 인근, 조용한 동네</h3><p>서울 은평구 새절역 가까이에 있어요. 상세 주소와 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.</p></div>
-      <div><div class="k">머무는 방식</div><h3>침대 둘, 실내화 신고, 밤엔 조용히</h3><p>현관에서 신발을 벗고 실내 슬리퍼를 신는 집이에요. 오후 10시부터 아침 7시까지는 이웃을 위해 조용히 지내 주세요.</p></div>
-      <div><div class="k">외국인 손님</div><h3>말이 안 통해도 괜찮아요</h3><p>한국어·영어·중국어·일본어 가이드북이 있고, 한국 전화번호 없이 해외 카드로 주문하는 배달 앱 안내도 넣어 두었어요.</p></div>
+      <div><div class="k" data-i="sp1_k">위치</div><h3 data-i="sp1_h">새절역 인근, 조용한 동네</h3><p data-i="sp1_p">서울 은평구 새절역 가까이에 있어요. 상세 주소와 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.</p></div>
+      <div><div class="k" data-i="sp2_k">머무는 방식</div><h3 data-i="sp2_h">침대 둘, 실내화 신고, 밤엔 조용히</h3><p data-i="sp2_p">현관에서 신발을 벗고 실내 슬리퍼를 신는 집이에요. 오후 10시부터 아침 7시까지는 이웃을 위해 조용히 지내 주세요.</p></div>
+      <div><div class="k" data-i="sp3_k">외국인 손님</div><h3 data-i="sp3_h">말이 안 통해도 괜찮아요</h3><p data-i="sp3_p">한국어·영어·중국어·일본어 가이드북이 있고, 한국 전화번호 없이 해외 카드로 주문하는 배달 앱 안내도 넣어 두었어요.</p></div>
     </div>
   </section>
 
   <section class="block" id="amen">
     <div class="head">
-      <h2>편의시설</h2>
-      <p>사용법은 가이드북에 사진과 함께 있어요</p>
+      <h2 data-i="am_h">편의시설</h2>
+      <p data-i="am_p">사용법은 가이드북에 사진과 함께 있어요</p>
     </div>
     <div class="amen">
-      <div><b>스마트 TV · OTT</b><span>개인 계정으로 자유롭게, 퇴실 때 로그아웃만</span></div>
-      <div><b>주방 · 인덕션</b><span>전용 용기 준비돼 있어요</span></div>
-      <div><b>세탁기</b><span>세제 포함, 표준 코스 한 번이면 끝</span></div>
-      <div><b>에어컨 · 온수 보일러</b><span>사계절 냉난방, 권장 온도 안내</span></div>
-      <div><b>와이파이</b><span>QR 코드 스캔으로 바로 연결</span></div>
-      <div><b>무료 주차 1대</b><span>차량 번호를 미리 알려 주세요</span></div>
-      <div><b>분리수거</b><span>1층 외부 분리수거장, 안내표 있음</span></div>
-      <div><b>배달 앱 안내</b><span>외국인용 Shuttle 앱, 영어 메뉴·해외 카드</span></div>
+      <div><b data-i="a1">스마트 TV · OTT</b><span data-i="a1s">개인 계정으로 자유롭게, 퇴실 때 로그아웃만</span></div>
+      <div><b data-i="a2">주방 · 인덕션</b><span data-i="a2s">전용 용기 준비돼 있어요</span></div>
+      <div><b data-i="a3">세탁기</b><span data-i="a3s">세제 포함, 표준 코스 한 번이면 끝</span></div>
+      <div><b data-i="a4">에어컨 · 온수 보일러</b><span data-i="a4s">사계절 냉난방, 권장 온도 안내</span></div>
+      <div><b data-i="a5">와이파이</b><span data-i="a5s">QR 코드 스캔으로 바로 연결</span></div>
+      <div><b data-i="a6">무료 주차 1대</b><span data-i="a6s">차량 번호를 미리 알려 주세요</span></div>
+      <div><b data-i="a7">분리수거</b><span data-i="a7s">1층 외부 분리수거장, 안내표 있음</span></div>
+      <div><b data-i="a8">배달 앱 안내</b><span data-i="a8s">외국인용 Shuttle 앱, 영어 메뉴·해외 카드</span></div>
     </div>
   </section>
 
   <section class="block" id="rules">
     <div class="head">
-      <h2>이용 안내</h2>
-      <p>서로 편하게 머물기 위한 약속</p>
+      <h2 data-i="ru_h">이용 안내</h2>
+      <p data-i="ru_p">서로 편하게 머물기 위한 약속</p>
     </div>
     <div class="rules">
-      <div><b>체크인 · 체크아웃</b><span>오후 3시 입실, 오전 11시 퇴실이에요.</span></div>
-      <div><b>실내화 착용</b><span>현관에서 신발을 벗고 실내 슬리퍼를 이용해 주세요.</span></div>
-      <div><b>전 구역 금연</b><span>위반 시 특수 청소비가 부과될 수 있어요.</span></div>
-      <div><b>반려동물</b><span>청결한 관리를 위해 동반은 정중히 제한하고 있어요.</span></div>
-      <div><b>콰이엇 타임</b><span>오후 10시부터 아침 7시까지는 조용히 부탁드려요.</span></div>
-      <div><b>주차</b><span>무료 1대. 공용 공간이라 만차 시 어려울 수 있고, 진입로 경사가 있으니 서행해 주세요.</span></div>
+      <div><b data-i="r1">체크인 · 체크아웃</b><span data-i="r1s">오후 3시 입실, 오전 11시 퇴실이에요.</span></div>
+      <div><b data-i="r2">실내화 착용</b><span data-i="r2s">현관에서 신발을 벗고 실내 슬리퍼를 이용해 주세요.</span></div>
+      <div><b data-i="r3">전 구역 금연</b><span data-i="r3s">위반 시 특수 청소비가 부과될 수 있어요.</span></div>
+      <div><b data-i="r4">반려동물</b><span data-i="r4s">청결한 관리를 위해 동반은 정중히 제한하고 있어요.</span></div>
+      <div><b data-i="r5">콰이엇 타임</b><span data-i="r5s">오후 10시부터 아침 7시까지는 조용히 부탁드려요.</span></div>
+      <div><b data-i="r6">주차</b><span data-i="r6s">무료 1대. 공용 공간이라 만차 시 어려울 수 있고, 진입로 경사가 있으니 서행해 주세요.</span></div>
     </div>
   </section>
 
   <section class="block" id="book">
     <div class="two">
       <div>
-        <h2>예약</h2>
-        <p>예약은 에어비앤비에서 받고 있어요. 날짜와 인원을 알려 주시면 가능 여부를 바로 답해 드릴게요. 확정되면 상세 주소와 출입 방법이 담긴 가이드북 링크를 보내 드려요.</p>
+        <h2 data-i="bk_h">예약</h2>
+        <p data-i="bk_p">예약은 에어비앤비에서 받고 있어요. 날짜와 인원을 알려 주시면 가능 여부를 바로 답해 드릴게요. 확정되면 상세 주소와 출입 방법이 담긴 가이드북 링크를 보내 드려요.</p>
         <div class="btns">
-          <a class="btn" href="mailto:howsdoyi@gmail.com?subject=%ED%95%98%EC%9A%B0%EC%8A%A4%ED%86%A0%EB%A6%AC%20%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%98%88%EC%95%BD%20%EB%AC%B8%EC%9D%98">메일로 예약 문의</a>
-          <div class="guide" aria-label="게스트 가이드북"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener">가이드북<small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
+          <a class="btn" id="mailBtn" href="mailto:howsdoyi@gmail.com?subject=%ED%95%98%EC%9A%B0%EC%8A%A4%ED%86%A0%EB%A6%AC%20%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%98%88%EC%95%BD%20%EB%AC%B8%EC%9D%98" data-i="bk_mail">메일로 예약 문의</a>
+          <div class="guide" aria-label="Guide Book"><a href="https://app.notion.com/p/Welcome-Guide-Book-3d5cb4582d24800fb220f0118f237927" target="_blank" rel="noopener"><span data-i="guide">가이드북</span><small>한국어</small></a><a href="https://app.notion.com/p/HOUSE-TORY-Welcome-Guide-Book-3d5cb4582d2480d68dd5e2f81c516e57" target="_blank" rel="noopener">Guide Book<small>English</small></a></div>
         </div>
-        <p class="note">에어비앤비 예약 페이지 링크는 곧 연결돼요.</p>
+        <p class="note" data-i="bk_note">에어비앤비 예약 페이지 링크는 곧 연결돼요.</p>
       </div>
       <div>
-        <h2>오시는 길</h2>
-        <p>서울 은평구, 새절역 인근이에요. 상세 위치와 건물 출입 방법은 개인정보와 안전을 위해 예약 확정 후에 안내해 드려요.</p>
-        <p style="margin-top:12px">문의 <a href="mailto:howsdoyi@gmail.com" style="color:var(--accent);font-weight:600;text-decoration:none">howsdoyi@gmail.com</a></p>
+        <h2 data-i="way_h">오시는 길</h2>
+        <p data-i="way_p">서울 은평구, 새절역 인근이에요. 상세 위치와 건물 출입 방법은 개인정보와 안전을 위해 예약 확정 후에 안내해 드려요.</p>
+        <p style="margin-top:12px"><span data-i="contact">문의</span> <a href="mailto:howsdoyi@gmail.com" style="color:var(--accent);font-weight:600;text-decoration:none">howsdoyi@gmail.com</a></p>
       </div>
     </div>
     <div class="cross">
-      <div><b>하우스토리 테크도 있어요</b><p>집을 꾸미듯 컴퓨터도 정성껏 조립해 드려요. 부품 마진 0원, 조립비 수익 10% 기부.</p></div>
-      <a class="btn line" href="../">조립 컴퓨터 보러 가기</a>
+      <div><b data-i="cr_h">하우스토리 테크도 있어요</b><p data-i="cr_p">집을 꾸미듯 컴퓨터도 정성껏 조립해 드려요. 부품 마진 0원, 조립비 수익 10% 기부.</p></div>
+      <a class="btn line" href="../" data-i="cr_btn">조립 컴퓨터 보러 가기</a>
     </div>
   </section>
 
   <footer>
-    <span><b>하우스토리 스테이</b> &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
-    <span>© 2026 하우스토리 · 스테이 | <a href="../">테크</a></span>
+    <span><b data-i="ft_brand">하우스토리 스테이</b> &nbsp;·&nbsp; <a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></span>
+    <span>© 2026 HOWS.TORY · <span data-i="sw_stay">스테이</span> | <a href="../" data-i="sw_tech">테크</a></span>
   </footer>
 </div>
+
 <script>
-document.addEventListener('click', function (e) {
-  var a = e.target.closest('a[data-lb]'); if (!a) return;
-  e.preventDefault();
-  var lb = document.createElement('div'); lb.className = 'lb';
-  var img = document.createElement('img'); img.src = a.getAttribute('href'); img.alt = '';
-  var x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', '닫기');
-  lb.appendChild(img); lb.appendChild(x);
-  lb.addEventListener('click', function () { lb.remove(); });
-  document.body.appendChild(lb);
-});
+(function () {
+  var T = {
+    ko: {
+      _title: '하우스토리 스테이', _alt: '하우스토리 스테이 거실, 흰 식탁과 원목 벤치',
+      sw_stay: '스테이', sw_tech: '테크', nav_photos: '사진', nav_space: '공간', nav_amen: '편의시설', nav_rules: '이용 안내', nav_book: '예약', cta: '예약 문의',
+      kicker: '하우스토리 스테이 · 새절', h1: '머무는 사람이<br>편한 집을 만들어요.',
+      lead: '서울 은평구 새절역 인근의 작은 스테이예요. <b>실내화, 조용한 밤, 깨끗한 주방</b>처럼 머무는 동안 신경 쓰이지 않아야 할 것들을 먼저 챙겨 두었어요. 외국인 손님을 위한 <b>한국어·영어 가이드북</b>(중국어·일본어 포함)과 한국 번호 없이 쓰는 배달 앱 안내까지 준비돼 있어요.',
+      f_in: '체크인', f_out: '체크아웃', f_park_v: '1대', f_park: '무료 주차', f_lang_v: '4개 국어', f_lang: '가이드북 KR·EN·CN·JP', guide: '가이드북',
+      ph_h: '공간 둘러보기', ph_p: '사진을 누르면 크게 보여요', g1: '거실 · 식탁', g2: '침실', g3: '거실 한켠', g4: '화장대',
+      sp_h: '이런 곳이에요', sp_p: '하우스토리 스테이 · 은평구 새절',
+      sp1_k: '위치', sp1_h: '새절역 인근, 조용한 동네', sp1_p: '서울 은평구 새절역 가까이에 있어요. 상세 주소와 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.',
+      sp2_k: '머무는 방식', sp2_h: '침대 둘, 실내화 신고, 밤엔 조용히', sp2_p: '현관에서 신발을 벗고 실내 슬리퍼를 신는 집이에요. 오후 10시부터 아침 7시까지는 이웃을 위해 조용히 지내 주세요.',
+      sp3_k: '외국인 손님', sp3_h: '말이 안 통해도 괜찮아요', sp3_p: '한국어·영어·중국어·일본어 가이드북이 있고, 한국 전화번호 없이 해외 카드로 주문하는 배달 앱 안내도 넣어 두었어요.',
+      am_h: '편의시설', am_p: '사용법은 가이드북에 사진과 함께 있어요',
+      a1: '스마트 TV · OTT', a1s: '개인 계정으로 자유롭게, 퇴실 때 로그아웃만', a2: '주방 · 인덕션', a2s: '전용 용기 준비돼 있어요', a3: '세탁기', a3s: '세제 포함, 표준 코스 한 번이면 끝', a4: '에어컨 · 온수 보일러', a4s: '사계절 냉난방, 권장 온도 안내', a5: '와이파이', a5s: 'QR 코드 스캔으로 바로 연결', a6: '무료 주차 1대', a6s: '차량 번호를 미리 알려 주세요', a7: '분리수거', a7s: '1층 외부 분리수거장, 안내표 있음', a8: '배달 앱 안내', a8s: '외국인용 Shuttle 앱, 영어 메뉴·해외 카드',
+      ru_h: '이용 안내', ru_p: '서로 편하게 머물기 위한 약속',
+      r1: '체크인 · 체크아웃', r1s: '오후 3시 입실, 오전 11시 퇴실이에요.', r2: '실내화 착용', r2s: '현관에서 신발을 벗고 실내 슬리퍼를 이용해 주세요.', r3: '전 구역 금연', r3s: '위반 시 특수 청소비가 부과될 수 있어요.', r4: '반려동물', r4s: '청결한 관리를 위해 동반은 정중히 제한하고 있어요.', r5: '콰이엇 타임', r5s: '오후 10시부터 아침 7시까지는 조용히 부탁드려요.', r6: '주차', r6s: '무료 1대. 공용 공간이라 만차 시 어려울 수 있고, 진입로 경사가 있으니 서행해 주세요.',
+      bk_h: '예약', bk_p: '예약은 에어비앤비에서 받고 있어요. 날짜와 인원을 알려 주시면 가능 여부를 바로 답해 드릴게요. 확정되면 상세 주소와 출입 방법이 담긴 가이드북 링크를 보내 드려요.', bk_mail: '메일로 예약 문의', bk_note: '에어비앤비 예약 페이지 링크는 곧 연결돼요.',
+      way_h: '오시는 길', way_p: '서울 은평구, 새절역 인근이에요. 상세 위치와 건물 출입 방법은 개인정보와 안전을 위해 예약 확정 후에 안내해 드려요.', contact: '문의',
+      cr_h: '하우스토리 테크도 있어요', cr_p: '집을 꾸미듯 컴퓨터도 정성껏 조립해 드려요. 부품 마진 0원, 조립비 수익 10% 기부.', cr_btn: '조립 컴퓨터 보러 가기', ft_brand: '하우스토리 스테이',
+      _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('하우스토리 스테이 예약 문의')
+    },
+    en: {
+      _title: 'HOWS.TORY Stay', _alt: 'HOWS.TORY Stay living room with white dining table and wooden bench',
+      sw_stay: 'Stay', sw_tech: 'Tech', nav_photos: 'Photos', nav_space: 'The place', nav_amen: 'Amenities', nav_rules: 'House rules', nav_book: 'Book', cta: 'Book / Inquire',
+      kicker: 'HOWS.TORY Stay · Saejeol, Seoul', h1: 'A home that\'s easy<br>to stay in.',
+      lead: 'A small stay near Saejeol Station in Eunpyeong-gu, Seoul. We took care of the things you shouldn\'t have to think about: <b>indoor slippers, quiet nights, a clean kitchen</b>. For international guests there\'s a <b>guide book in English</b> (plus Korean, Chinese and Japanese) and a food-delivery app that works without a Korean phone number.',
+      f_in: 'Check-in', f_out: 'Check-out', f_park_v: '1 car', f_park: 'Free parking', f_lang_v: '4 languages', f_lang: 'Guide book KR·EN·CN·JP', guide: 'Guide Book',
+      ph_h: 'Take a look around', ph_p: 'Tap a photo to enlarge', g1: 'Living room · dining table', g2: 'Bedroom', g3: 'Corner of the living room', g4: 'Dressing table',
+      sp_h: 'What it\'s like', sp_p: 'HOWS.TORY Stay · Saejeol, Eunpyeong-gu',
+      sp1_k: 'Location', sp1_h: 'Near Saejeol Station, a quiet neighborhood', sp1_p: 'Close to Saejeol Station in Eunpyeong-gu, Seoul. The exact address and entry instructions come with the guide book once your booking is confirmed.',
+      sp2_k: 'How we live here', sp2_h: 'Two beds, slippers on, quiet at night', sp2_p: 'Shoes come off at the door and indoor slippers go on. From 10 PM to 7 AM please keep it quiet for the neighbors.',
+      sp3_k: 'International guests', sp3_h: 'No Korean needed', sp3_p: 'Guide books in Korean, English, Chinese and Japanese, plus a delivery-app guide that takes foreign cards with no Korean phone number.',
+      am_h: 'Amenities', am_p: 'How-to photos are in the guide book',
+      a1: 'Smart TV · OTT', a1s: 'Use your own accounts, just log out when you leave', a2: 'Kitchen · induction hob', a2s: 'Induction-ready cookware provided', a3: 'Washing machine', a3s: 'Detergent included, one standard cycle', a4: 'Air conditioning · hot water', a4s: 'Heating and cooling year-round, recommended settings included', a5: 'Wi-Fi', a5s: 'Scan the QR code to connect', a6: 'Free parking, 1 car', a6s: 'Send us your plate number in advance', a7: 'Recycling', a7s: 'Outdoor recycling area on the 1st floor, with a guide', a8: 'Delivery app guide', a8s: 'Shuttle app: English menus, foreign cards',
+      ru_h: 'House rules', ru_p: 'So everyone stays comfortable',
+      r1: 'Check-in · Check-out', r1s: 'Check-in from 3 PM, check-out by 11 AM.', r2: 'Indoor slippers', r2s: 'Please take your shoes off at the door and use the slippers.', r3: 'No smoking anywhere', r3s: 'A special cleaning fee may apply if this is violated.', r4: 'Pets', r4s: 'To keep the place clean, we kindly don\'t allow pets.', r5: 'Quiet hours', r5s: 'Please keep it quiet from 10 PM to 7 AM.', r6: 'Parking', r6s: 'One free space. It\'s a shared lot, so it may be full at times; the ramp is steep, please drive slowly.',
+      bk_h: 'Booking', bk_p: 'Bookings are handled through Airbnb. Send us your dates and number of guests and we\'ll confirm availability right away. Once confirmed, you\'ll get the guide book link with the exact address and entry instructions.', bk_mail: 'Inquire by email', bk_note: 'The Airbnb booking link is coming soon.',
+      way_h: 'Getting here', way_p: 'Eunpyeong-gu, Seoul, near Saejeol Station. For privacy and safety, the exact location and building entry are shared after your booking is confirmed.', contact: 'Contact',
+      cr_h: 'We also build PCs: HOWS.TORY Tech', cr_p: 'We build custom PCs with the same care we put into this home. No markup on parts, 10% of assembly fees donated.', cr_btn: 'See custom PCs', ft_brand: 'HOWS.TORY Stay',
+      _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay booking inquiry')
+    },
+    zh: {
+      _title: 'HOWS.TORY Stay 好屋故事民宿', _alt: 'HOWS.TORY Stay 客厅，白色餐桌与原木长凳',
+      sw_stay: '民宿', sw_tech: '装机', nav_photos: '照片', nav_space: '空间', nav_amen: '设施', nav_rules: '入住须知', nav_book: '预订', cta: '预订咨询',
+      kicker: 'HOWS.TORY Stay · 首尔 新村站(Saejeol)', h1: '让住的人<br>感到舒服的家。',
+      lead: '位于首尔恩平区新村站(Saejeol)附近的小型民宿。<b>室内拖鞋、安静的夜晚、干净的厨房</b>，这些住宿期间不该让您操心的事，我们都先准备好了。为外国客人准备了<b>中文指南手册</b>（另有韩、英、日文），以及无需韩国手机号也能使用的外卖 App 指南。',
+      f_in: '入住', f_out: '退房', f_park_v: '1 辆', f_park: '免费停车', f_lang_v: '4 种语言', f_lang: '指南手册 韩·英·中·日', guide: '指南手册',
+      ph_h: '看看房间', ph_p: '点击照片可放大', g1: '客厅 · 餐桌', g2: '卧室', g3: '客厅一角', g4: '梳妆台',
+      sp_h: '这是一个怎样的地方', sp_p: 'HOWS.TORY Stay · 恩平区 新村',
+      sp1_k: '位置', sp1_h: '新村站附近，安静的社区', sp1_p: '靠近首尔恩平区新村站(Saejeol)。详细地址与进门方式将在预订确认后通过指南手册告知。',
+      sp2_k: '居住方式', sp2_h: '两张床，穿拖鞋，夜间保持安静', sp2_p: '进门请脱鞋换上室内拖鞋。晚上 10 点到早上 7 点，请为邻居保持安静。',
+      sp3_k: '外国客人', sp3_h: '不会韩语也没关系', sp3_p: '备有韩、英、中、日四种语言的指南手册，还有无需韩国手机号、可用境外银行卡下单的外卖 App 指南。',
+      am_h: '设施', am_p: '使用方法请见指南手册（附照片）',
+      a1: '智能电视 · OTT', a1s: '可用个人账号观看，退房时请退出登录', a2: '厨房 · 电磁炉', a2s: '备有电磁炉专用锅具', a3: '洗衣机', a3s: '含洗衣液，标准模式一键完成', a4: '空调 · 热水锅炉', a4s: '四季冷暖，附建议温度', a5: 'Wi-Fi', a5s: '扫描二维码即可连接', a6: '免费停车 1 辆', a6s: '请提前告知车牌号', a7: '垃圾分类', a7s: '1 楼室外分类回收处，附说明', a8: '外卖 App 指南', a8s: 'Shuttle App：英文菜单，支持境外银行卡',
+      ru_h: '入住须知', ru_p: '为了彼此都住得舒服的约定',
+      r1: '入住 · 退房', r1s: '下午 3 点入住，上午 11 点退房。', r2: '室内拖鞋', r2s: '请在玄关脱鞋并换上室内拖鞋。', r3: '全区域禁烟', r3s: '违反时可能收取特殊清洁费。', r4: '宠物', r4s: '为保持清洁，恕不接待宠物。', r5: '安静时段', r5s: '晚上 10 点至早上 7 点请保持安静。', r6: '停车', r6s: '免费 1 辆。停车场为公用，满位时可能无法停车；入口坡道较陡，请慢行。',
+      bk_h: '预订', bk_p: '预订通过 Airbnb 进行。告诉我们日期和人数，我们会立即答复是否可订。确认后会发送含详细地址和进门方式的指南手册链接。', bk_mail: '邮件咨询预订', bk_note: 'Airbnb 预订页面链接即将上线。',
+      way_h: '如何前往', way_p: '位于首尔恩平区新村站附近。出于隐私与安全考虑，详细位置和楼栋进门方式将在预订确认后告知。', contact: '联系',
+      cr_h: '我们也做 HOWS.TORY Tech 装机', cr_p: '像布置家一样用心组装电脑。配件零加价，装机费收入的 10% 用于捐赠。', cr_btn: '查看定制电脑', ft_brand: 'HOWS.TORY Stay',
+      _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay 预订咨询')
+    },
+    ja: {
+      _title: 'HOWS.TORY Stay ハウストーリー', _alt: 'HOWS.TORY Stay のリビング、白いダイニングテーブルと木のベンチ',
+      sw_stay: 'ステイ', sw_tech: 'テック', nav_photos: '写真', nav_space: '空間', nav_amen: '設備', nav_rules: 'ご利用案内', nav_book: '予約', cta: '予約のお問い合わせ',
+      kicker: 'HOWS.TORY Stay · ソウル セジョル駅', h1: '泊まる人が<br>くつろげる家を。',
+      lead: 'ソウル恩平区セジョル(Saejeol)駅近くの小さなステイです。<b>室内スリッパ、静かな夜、清潔なキッチン</b>など、滞在中に気にせず済むべきことを先に整えました。海外からのお客様向けに<b>日本語のガイドブック</b>（韓・英・中も）と、韓国の電話番号なしで使えるデリバリーアプリの案内もご用意しています。',
+      f_in: 'チェックイン', f_out: 'チェックアウト', f_park_v: '1台', f_park: '無料駐車', f_lang_v: '4か国語', f_lang: 'ガイドブック 韓·英·中·日', guide: 'ガイドブック',
+      ph_h: 'お部屋を見る', ph_p: '写真をタップすると拡大します', g1: 'リビング · ダイニング', g2: '寝室', g3: 'リビングの一角', g4: 'ドレッサー',
+      sp_h: 'こんな場所です', sp_p: 'HOWS.TORY Stay · 恩平区 セジョル',
+      sp1_k: '立地', sp1_h: 'セジョル駅の近く、静かな住宅街', sp1_p: 'ソウル恩平区セジョル駅の近くです。詳しい住所と入館方法は、予約確定後にガイドブックでご案内します。',
+      sp2_k: '過ごし方', sp2_h: 'ベッド2台、スリッパ、夜は静かに', sp2_p: '玄関で靴を脱ぎ、室内スリッパに履き替える家です。夜10時から朝7時までは、ご近所のために静かにお過ごしください。',
+      sp3_k: '海外からのお客様', sp3_h: '韓国語が話せなくても大丈夫', sp3_p: '韓・英・中・日のガイドブックがあり、韓国の電話番号なしで海外カード決済ができるデリバリーアプリの案内も入れています。',
+      am_h: '設備', am_p: '使い方は写真つきでガイドブックに',
+      a1: 'スマートTV · OTT', a1s: 'ご自身のアカウントで自由に、退室時はログアウトを', a2: 'キッチン · IHコンロ', a2s: 'IH対応の調理器具を用意', a3: '洗濯機', a3s: '洗剤つき、標準コース一回でOK', a4: 'エアコン · 給湯ボイラー', a4s: '一年中冷暖房、推奨温度の案内あり', a5: 'Wi-Fi', a5s: 'QRコードを読み取るだけで接続', a6: '無料駐車 1台', a6s: 'ナンバーを事前にお知らせください', a7: 'ごみの分別', a7s: '1階屋外の分別回収所、案内表あり', a8: 'デリバリーアプリ案内', a8s: 'Shuttleアプリ：英語メニュー、海外カード対応',
+      ru_h: 'ご利用案内', ru_p: 'お互いが心地よく過ごすためのお約束',
+      r1: 'チェックイン · チェックアウト', r1s: '午後3時チェックイン、午前11時チェックアウトです。', r2: '室内スリッパ', r2s: '玄関で靴を脱ぎ、スリッパをご利用ください。', r3: '全館禁煙', r3s: '違反時は特別清掃費をいただく場合があります。', r4: 'ペット', r4s: '清潔を保つため、ペットの同伴はご遠慮いただいています。', r5: 'クワイエットタイム', r5s: '夜10時から朝7時までは静かにお願いします。', r6: '駐車', r6s: '無料1台。共用駐車場のため満車の場合があり、進入路の坂が急なので徐行してください。',
+      bk_h: '予約', bk_p: '予約はAirbnbで受け付けています。日程と人数をお知らせいただければ、空き状況をすぐにお答えします。確定後、詳しい住所と入館方法を記載したガイドブックのリンクをお送りします。', bk_mail: 'メールで予約を問い合わせる', bk_note: 'Airbnbの予約ページへのリンクは近日公開です。',
+      way_h: 'アクセス', way_p: 'ソウル恩平区、セジョル駅の近くです。プライバシーと安全のため、詳しい場所と建物の入り方は予約確定後にご案内します。', contact: 'お問い合わせ',
+      cr_h: 'HOWS.TORY Tech もあります', cr_p: '家を整えるように、パソコンも丁寧に組み立てます。パーツはマージンゼロ、組立費の10%を寄付。', cr_btn: 'カスタムPCを見る', ft_brand: 'HOWS.TORY Stay',
+      _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay 予約のお問い合わせ')
+    }
+  };
+  var sel = document.getElementById('lang');
+  function apply(lang) {
+    var t = T[lang] || T.ko;
+    document.querySelectorAll('[data-i]').forEach(function (el) { var k = el.getAttribute('data-i'); if (t[k] != null) el.innerHTML = t[k]; });
+    document.documentElement.lang = lang;
+    document.title = t._title;
+    var m = document.getElementById('mailBtn'); if (m) m.href = t._mail;
+    document.querySelectorAll('.photo img, .gallery img').forEach(function (i) { i.alt = t._alt; });
+    sel.value = lang;
+    try { localStorage.setItem('howstory_lang', lang); } catch (e) {}
+  }
+  var saved = null; try { saved = localStorage.getItem('howstory_lang'); } catch (e) {}
+  var nav = (navigator.language || 'ko').toLowerCase();
+  var guess = nav.indexOf('ko') === 0 ? 'ko' : nav.indexOf('ja') === 0 ? 'ja' : nav.indexOf('zh') === 0 ? 'zh' : 'en';
+  var q = new URLSearchParams(location.search).get('lang');
+  apply(q && T[q] ? q : (saved && T[saved] ? saved : guess));
+  sel.addEventListener('change', function () { apply(sel.value); });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-lb]'); if (!a) return;
+    e.preventDefault();
+    var lb = document.createElement('div'); lb.className = 'lb';
+    var img = document.createElement('img'); img.src = a.getAttribute('href'); img.alt = '';
+    var x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'close');
+    lb.appendChild(img); lb.appendChild(x);
+    lb.addEventListener('click', function () { lb.remove(); });
+    document.body.appendChild(lb);
+  });
+})();
 </script>
 </body>
 </html>
