@@ -24,7 +24,10 @@
   .brand svg { width:30px; height:auto; color:var(--accent); }
   .brand small { font-weight:500; font-size:11px; letter-spacing:.22em; color:var(--ink-3); }
   .cta { font-size:13px; font-weight:700; padding:8px 14px; background:var(--btn); color:var(--btn-ink); text-decoration:none; white-space:nowrap; }
-  .head { padding-block: 36px 18px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .back { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; text-decoration:none; padding:7px 12px; border:1px solid var(--ink); background:var(--bg); }
+  .back:hover { background:var(--btn); color:var(--btn-ink); }
+  .top .r { display:flex; gap:8px; align-items:center; }
+  .head { padding-block: 28px 18px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
   h1 { margin:0; font-size: 28px; font-weight: 900; letter-spacing:-0.03em; }
   h1 span { color: var(--accent); }
   .sum { font-size: 14px; color: var(--ink-2); margin-top: 6px; }
@@ -60,11 +63,12 @@
       <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
       하우스토리 <small>HOWS.TORY</small>
     </a>
-    <a class="cta" href="../#apply">상담 신청</a>
+    <div class="r"><a class="back" href="../">‹ 메인으로</a><a class="cta" href="../#apply">상담 신청</a></div>
   </header>
 
   <section class="head">
     <div>
+      <a class="back" href="../#reviews" style="margin-bottom:14px">‹ 뒤로 가기</a>
       <h1>고객 후기 <span id="count"></span></h1>
       <div class="sum" id="sum">조립 받은 분들이 직접 남긴 후기예요. 이름은 가려서 올려요.</div>
     </div>
@@ -74,7 +78,7 @@
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" hidden>아직 올라온 후기가 없어요. 첫 후기를 기다리고 있어요.</div>
 
-  <footer>© 2026 하우스토리 · <a href="../">홈으로</a></footer>
+  <footer><a class="back" href="../">‹ 메인으로 돌아가기</a><div style="margin-top:14px">© 2026 하우스토리</div></footer>
 </div>
 
 <script src="../config.js"></script>
