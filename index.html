@@ -573,7 +573,7 @@
     var toAdmin = (C.SUPABASE_URL && C.SUPABASE_ANON_KEY)
       ? fetch(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/requests', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': C.SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + C.SUPABASE_ANON_KEY, 'Prefer': 'return=minimal' },
+          headers: { 'Content-Type': 'application/json', 'apikey': C.SUPABASE_ANON_KEY, 'Prefer': 'return=minimal' },
           body: JSON.stringify({ name: g('fName') || null, contact: g('fContact'), purpose: g('fUse'), budget: parseInt(g('fBudget'), 10) || null, memo: g('fMemo') || null, source: 'site' })
         }).catch(function () {})
       : Promise.resolve();
