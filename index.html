@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="하우스토리 — 부품 이름 몰라도 되는 상담형 조립 PC. 용도와 예산만 말하면 구성부터 조립, 테스트까지.">
-<meta property="og:title" content="하우스토리 · 상담형 조립 PC">
-<meta property="og:description" content="용도와 예산 두 가지만 말해 주세요. 부품 마진 0원, 한 달 10대 한정.">
-<title>하우스토리</title>
+<meta property="og:title" content="하우스토리 · 조립 컴퓨터 맞춤 서비스">
+<meta property="og:description" content="용도와 예산 두 가지만 말해 주세요. 부품 마진 0원, 조립비 수익 10% 기부, 한 달 10대 한정.">
+<title>하우스토리 · 조립 컴퓨터 맞춤 서비스</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151A24'/%3E%3Cpath d='M14 50V28L32 16l18 12v22' fill='none' stroke='%23E9A23B' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
@@ -97,12 +97,23 @@
   /* hero */
   .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; padding-block: 56px 48px; border-bottom: 1px solid var(--line); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
   .hero > div:first-child .roofmark { margin-bottom: 18px; }
+  .kicker { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .kicker h2 { font-size: 15px; font-weight: 900; letter-spacing: .02em; padding: 6px 12px; background: var(--btn); color: var(--btn-ink); }
+  .promise { margin-top: 22px; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--accent-soft); border-left: 3px solid var(--accent); font-size: 14px; color: var(--ink-2); }
+  .promise b { color: var(--ink); font-weight: 700; }
+  .promise .pct { font-size: 26px; font-weight: 900; letter-spacing: -0.03em; color: var(--ink); line-height: 1; padding-top: 2px; }
+  .give { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1px solid var(--line-2); }
+  .give div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--line); }
+  .give div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .give h3 { font-size: 16px; }
+  .give p { margin-top: 8px; font-size: 13px; color: var(--ink-2); }
+  .give .big { font-size: 34px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
   .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 8px; border: 1px solid var(--ink); }
   .badge.accent { border-color: var(--accent); color: var(--accent); }
   .hero h1 { margin-top: 18px; font-size: clamp(32px, 4.6vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.18; }
   .hero .lead { margin-top: 18px; font-size: 16px; color: var(--ink-2); max-width: 36em; }
   .hero .lead b { color: var(--ink); font-weight: 700; }
-  .facts { margin-top: 28px; display: grid; grid-template-columns: repeat(3, auto); gap: 0; width: fit-content; border-top: 1px solid var(--line-2); }
+  .facts { margin-top: 24px; display: grid; grid-template-columns: repeat(4, auto); gap: 0; width: fit-content; border-top: 1px solid var(--line-2); }
   .facts div { padding: 12px 24px 12px 0; border-bottom: 1px solid var(--line); }
   .facts div + div { padding-left: 24px; border-left: 1px solid var(--line); }
   .facts b { display: block; font-size: 22px; font-weight: 900; letter-spacing: -0.03em; }
@@ -236,7 +247,9 @@
   @media (max-width: 480px) {
     .steps { grid-template-columns: 1fr; }
     .step + .step { padding-left: 0; border-left: 0; }
-    .facts { grid-template-columns: 1fr; width: 100%; }
+    .facts { grid-template-columns: 1fr 1fr; width: 100%; }
+    .give { grid-template-columns: 1fr; }
+    .give div + div { padding-left: 0; border-left: 0; }
     .facts div + div { padding-left: 0; border-left: 0; }
   }
   @media (prefers-reduced-motion: no-preference) {
@@ -253,6 +266,7 @@
       <a href="#how">진행 방식</a>
       <a href="#builds">조립 사례</a>
       <a href="#price">비용</a>
+      <a href="#give">약속</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="cta" href="#apply">상담 신청</a>
@@ -261,11 +275,13 @@
   <section class="hero">
     <div>
       <svg class="roofmark glow" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
-      <span class="badge accent">이달 조립 가능 9대 남음</span>
+      <div class="kicker"><h2>조립 컴퓨터 맞춤 서비스</h2><span class="badge accent">이달 조립 가능 9대 남음</span></div>
       <h1>하우스토리에선<br>부품 이름 몰라도 돼요.<br>뭐 할 건지, 얼마까진지만.</h1>
       <p class="lead">견적 사이트에서 CPU 고르다 포기한 적 있으시죠. <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
+      <div class="promise"><span class="pct">10%</span><span><b>조립 실력을 나누는 일이라, 조립비 수익의 10%는 기부해요.</b><br>부품엔 마진을 안 붙이고, 제 몫인 조립비에서 떼어 기부합니다. 기부 내역은 이 페이지에 그대로 올려요.</span></div>
       <div class="facts">
         <div><b>0원</b><span>부품 마진 · 영수증 그대로</span></div>
+        <div><b>10%</b><span>조립비 수익 기부</span></div>
         <div><b>10대</b><span>한 달 조립 한도</span></div>
         <div><b>1년</b><span>조립 문제 무상 점검</span></div>
       </div>
@@ -399,6 +415,18 @@
     </div>
   </section>
 
+  <section class="block" id="give">
+    <div class="head">
+      <h2>하우스토리의 약속</h2>
+      <p>재능은 나누고, 수익은 일부 돌려보내요</p>
+    </div>
+    <div class="give">
+      <div><div class="big">0원</div><h3>부품 마진 없음</h3><p>부품은 제가 대신 주문하고 영수증을 그대로 드려요. 제 몫은 조립비 하나뿐이라, 견적이 부풀 이유가 없어요.</p></div>
+      <div><div class="big">10%</div><h3>조립비 수익 기부</h3><p>이 일은 돈보다 제 조립 실력을 나누는 쪽에 가까워요. 그래서 조립비 수익의 10%를 기부합니다. 첫 조립부터 적용돼요.</p></div>
+      <div><div class="big">공개</div><h3>기부 내역 공개</h3><p>기부처와 금액, 영수증을 이 자리에 올려요. 첫 조립이 끝나면 첫 기부 내역이 여기 붙습니다.</p></div>
+    </div>
+  </section>
+
   <section class="block" id="price">
     <div class="capacity">
       <div>
@@ -426,6 +454,7 @@
       <details><summary>부품 마진 붙이시나요?</summary><p>안 붙여요. 부품은 제가 주문하되 영수증 그대로 드리고, 제 몫은 조립비뿐이에요. 그래서 대형 업체보다 싸게 나오는 경우가 많아요.</p></details>
       <details><summary>A/S는 어떻게 돼요?</summary><p>부품은 각 제조사 보증(보통 2~3년)을 그대로 받으시고, 제가 중간에서 접수 도와 드려요. 조립 문제는 1년 안에 무상으로 봐 드려요.</p></details>
       <details><summary>제가 부품 골라서 조립만 맡겨도 돼요?</summary><p>돼요. 호환성만 한 번 봐 드리고 조립비만 받아요.</p></details>
+      <details><summary>기부는 어디에, 어떻게 하나요?</summary><p>조립비 수익의 10%를 모아서 기부하고, 기부처와 영수증을 이 사이트에 공개해요. 첫 조립이 끝나면 첫 기부 내역부터 올릴게요.</p></details>
       <details><summary>지역은요?</summary><p>직접 수령은 서울·수도권이고, 그 외 지역은 완충 포장해서 택배로 보내 드려요.</p></details>
     </div>
   </section>
