@@ -184,6 +184,18 @@
   .quote b { color: var(--ink); font-weight: 700; }
   .build.empty .art { border: 1px dashed var(--line); background: var(--bg); }
 
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .rvc { background: var(--bg-2); padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .rvc .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border: 0; height: auto; }
+  .rvc .name { font-weight: 700; font-size: 14px; }
+  .rvc .name small { font-weight: 500; color: var(--ink-3); margin-left: 6px; }
+  .rvc .stars { color: var(--accent); letter-spacing: 2px; font-size: 14px; }
+  .rvc .body { font-size: 14px; color: var(--ink-2); white-space: pre-wrap; }
+  .rvc .media { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .rvc .media a, .rvc .media video { display: block; aspect-ratio: 1; background: var(--bg-3); overflow: hidden; width: 100%; }
+  .rvc .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rvc .media video { object-fit: cover; }
+  .rvc .date { font-size: 11px; color: var(--ink-3); }
   .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line-2); }
   .why div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--line); }
   .why div + div { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -239,7 +251,7 @@
     .nav { display: none; }
     .steps { grid-template-columns: 1fr 1fr; }
     .step:nth-child(3) { padding-left: 0; border-left: 0; }
-    .builds, .why, .capacity, .apply, .row { grid-template-columns: 1fr; }
+    .builds, .why, .capacity, .apply, .row, .reviews { grid-template-columns: 1fr; }
     .why div + div { padding-left: 0; border-left: 0; }
     .capacity { gap: 28px; }
     section.block { padding-block: 36px; }
@@ -265,6 +277,7 @@
     <nav class="nav">
       <a href="#how">진행 방식</a>
       <a href="#builds">조립 사례</a>
+      <a href="#reviews" id="navReviews" hidden>후기</a>
       <a href="#price">비용</a>
       <a href="#give">약속</a>
       <a href="#faq">FAQ</a>
@@ -402,6 +415,14 @@
         </div>
       </article>
     </div>
+  </section>
+
+  <section class="block" id="reviews" hidden>
+    <div class="head">
+      <h2>고객 후기</h2>
+      <p>조립 받은 분들이 직접 남긴 후기예요 · 이름은 가려서 올려요</p>
+    </div>
+    <div class="reviews" id="reviewList"></div>
   </section>
 
   <section class="block">
@@ -579,6 +600,31 @@
       if (big) big.innerHTML = left + '<small>/ ' + cap + '대</small>';
       if (bars) { var h = ''; for (var i = 0; i < cap; i++) h += '<i' + (i < left ? ' class="on"' : '') + '></i>'; bars.innerHTML = h; }
     }).catch(function () {});
+  })();
+
+  // ---- 고객 후기: 승인된 것만 불러와 표시 ----
+  (function () {
+    var C = window.HOWSTORY_CONFIG || {};
+    if (!C.SUPABASE_URL || !C.SUPABASE_ANON_KEY) return;
+    var base = C.SUPABASE_URL.replace(/\/$/, '');
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    fetch(base + '/rest/v1/rpc/public_reviews', { method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': C.SUPABASE_ANON_KEY }, body: '{}' })
+      .then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+        if (!Array.isArray(list) || !list.length) return;
+        var el = document.getElementById('reviewList');
+        el.innerHTML = list.map(function (v) {
+          var stars = '★★★★★'.slice(0, v.rating) + '☆☆☆☆☆'.slice(0, 5 - v.rating);
+          var d = new Date(v.at); var date = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate();
+          var media = (v.media || []).map(function (m) {
+            var u = base + '/storage/v1/object/public/reviews/' + m.path;
+            return m.type === 'video' ? '<video src="' + esc(u) + '" controls playsinline preload="metadata"></video>' : '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '" alt="고객 후기 사진" loading="lazy"></a>';
+          }).join('');
+          return '<article class="rvc"><div class="top"><span class="name">' + esc(v.name) + ' 고객님<small>' + esc(v.purpose || '') + (v.budget ? ' · ' + esc(v.budget) + '만원' : '') + '</small></span><span class="stars" aria-label="' + v.rating + '점">' + stars + '</span></div>' +
+            '<div class="body">' + esc(v.body) + '</div>' + (media ? '<div class="media">' + media + '</div>' : '') + '<div class="date">' + date + '</div></article>';
+        }).join('');
+        document.getElementById('reviews').hidden = false;
+        var nv = document.getElementById('navReviews'); if (nv) nv.hidden = false;
+      }).catch(function () {});
   })();
 
   var b1 = document.getElementById('b1img');

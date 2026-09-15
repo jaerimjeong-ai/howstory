@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>하우스토리 후기 남기기</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151A24'/%3E%3Cpath d='M14 50V28L32 16l18 12v22' fill='none' stroke='%23E9A23B' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+  :root { --bg:#FFFFFF; --bg-2:#F7F7F7; --bg-3:#EFEFEF; --ink:#000; --ink-2:#555; --ink-3:#999; --line:#E5E5E5; --line-2:#000; --btn:#000; --btn-ink:#FFF; --accent:#E9A23B; --accent-ink:#1A1A1A; --accent-soft:#FBF1DF; --bad:#B91C1C; --ok:#1E7F52; --dot:rgba(0,0,0,.16); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#151A24; --bg-2:#1C2230; --bg-3:#252C3B; --ink:#F4F2EC; --ink-2:#C3C8D2; --ink-3:#8B92A0; --line:#2C3444; --line-2:#F4F2EC; --btn:#F2B44C; --btn-ink:#151A24; --accent:#F2B44C; --accent-ink:#151A24; --accent-soft:#2E2A22; --bad:#F87171; --ok:#5BCB8E; --dot:rgba(255,255,255,.18); } }
+  :root[data-theme="dark"] { --bg:#151A24; --bg-2:#1C2230; --bg-3:#252C3B; --ink:#F4F2EC; --ink-2:#C3C8D2; --ink-3:#8B92A0; --line:#2C3444; --line-2:#F4F2EC; --btn:#F2B44C; --btn-ink:#151A24; --accent:#F2B44C; --accent-ink:#151A24; --accent-soft:#2E2A22; --bad:#F87171; --ok:#5BCB8E; --dot:rgba(255,255,255,.18); }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family: Pretendard, "Pretendard Variable", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size:15px; line-height:1.6; letter-spacing:-0.01em; -webkit-font-smoothing:antialiased; background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
+  button, input, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  [hidden] { display:none !important; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 20px 16px 60px; }
+  .brand { display:inline-flex; align-items:center; gap:10px; font-weight:900; font-size:18px; letter-spacing:-0.04em; text-decoration:none; color:inherit; }
+  .brand svg { width:28px; height:auto; color:var(--accent); }
+  .brand small { font-weight:500; font-size:11px; letter-spacing:.22em; color:var(--ink-3); }
+  .card { margin-top: 18px; background: var(--bg); border: 1px solid var(--line-2); padding: 24px 20px; }
+  h1 { margin:0; font-size: 24px; font-weight: 900; letter-spacing:-0.03em; line-height:1.25; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .sub { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; }
+  .lbl { display:block; font-size:13px; font-weight:700; margin: 22px 0 8px; }
+  .lbl small { font-weight: 500; color: var(--ink-3); margin-left: 6px; }
+  .stars { display:flex; gap:4px; }
+  .stars button { background:transparent; border:0; padding:2px; cursor:pointer; color: var(--bg-3); }
+  .stars button svg { width:40px; height:40px; fill: currentColor; }
+  .stars button.on { color: var(--accent); }
+  .stars-txt { margin-top: 4px; font-size: 13px; color: var(--ink-2); min-height: 20px; }
+  textarea { width:100%; min-height: 130px; padding: 12px; border: 1px solid var(--line); background: var(--bg-2); border-radius:0; resize: vertical; }
+  textarea:focus { border-color: var(--ink); outline:none; }
+  .cnt { text-align:right; font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+  .drop { border: 1px dashed var(--line-2); padding: 18px; text-align:center; cursor:pointer; background: var(--bg-2); }
+  .drop b { display:block; font-size: 14px; }
+  .drop span { font-size: 12px; color: var(--ink-3); }
+  .drop input { display:none; }
+  .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
+  .th { position: relative; aspect-ratio: 1; background: var(--bg-3); overflow:hidden; }
+  .th img, .th video { width:100%; height:100%; object-fit: cover; display:block; }
+  .th .x { position:absolute; top:4px; right:4px; width:22px; height:22px; border:0; border-radius:50%; background: rgba(0,0,0,.65); color:#fff; font-size:14px; line-height:22px; cursor:pointer; padding:0; }
+  .th .v { position:absolute; left:4px; bottom:4px; font-size:10px; font-weight:700; padding:1px 5px; background: rgba(0,0,0,.65); color:#fff; }
+  .th .p { position:absolute; inset:0; display:grid; place-items:center; background: rgba(0,0,0,.45); color:#fff; font-size:12px; font-weight:700; }
+  .btn { width:100%; margin-top: 22px; border:0; padding: 14px; font-weight: 700; font-size: 15px; background: var(--btn); color: var(--btn-ink); cursor:pointer; }
+  .btn:disabled { opacity:.5; cursor: default; }
+  .msg { margin-top: 10px; font-size: 13px; min-height: 20px; }
+  .msg.bad { color: var(--bad); }
+  .msg.ok { color: var(--ok); }
+  .done h1 { font-size: 22px; }
+  .done p { color: var(--ink-2); }
+  .note { margin-top: 16px; font-size: 12px; color: var(--ink-3); }
+  .foot { margin-top: 20px; font-size: 12px; color: var(--ink-3); text-align:center; }
+  .foot a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="https://shortply.co.kr/">
+    <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
+    하우스토리 <small>HOWS.TORY</small>
+  </a>
+
+  <div class="card" id="loading"><p class="sub" style="margin:0">후기 링크를 확인하고 있어요...</p></div>
+
+  <div class="card" id="invalid" hidden>
+    <h1>이 링크는 쓸 수 없어요</h1>
+    <p class="sub">후기 링크는 조립이 끝난 손님에게만 드려요. 링크가 잘렸거나 아직 완료 처리 전일 수 있어요. 하우스토리에 다시 문의해 주세요.</p>
+    <p class="foot"><a href="mailto:howsdoyi@gmail.com">howsdoyi@gmail.com</a></p>
+  </div>
+
+  <form class="card" id="form" hidden>
+    <h1><em id="who">고객</em>님,<br>하우스토리 PC 어떠셨어요?</h1>
+    <p class="sub" id="sub">한 줄이면 충분해요. 남겨 주신 후기는 확인 후 사이트에 이름을 가린 채로 올라가요.</p>
+
+    <label class="lbl">별점</label>
+    <div class="stars" id="stars" role="radiogroup" aria-label="별점"></div>
+    <div class="stars-txt" id="starsTxt"></div>
+
+    <label class="lbl" for="body">한마디 <small>1,000자까지</small></label>
+    <textarea id="body" maxlength="1000" placeholder="예: 조합이 끝내주네요. 케이블 정리도 깔끔하고 게임 돌릴 때 조용해요."></textarea>
+    <div class="cnt"><span id="cnt">0</span> / 1000</div>
+
+    <label class="lbl">사진·동영상 <small>사진 10장, 동영상 2개까지 · 안 넣어도 돼요</small></label>
+    <label class="drop" id="drop">
+      <b>눌러서 고르기</b><span>사진은 자동으로 크기를 줄여 올려요 · 동영상은 50MB까지</span>
+      <input type="file" id="file" accept="image/*,video/*" multiple>
+    </label>
+    <div class="grid" id="grid"></div>
+
+    <button class="btn" type="submit" id="send">후기 보내기</button>
+    <div class="msg" id="msg"></div>
+    <p class="note">보내면 하우스토리가 확인한 뒤 사이트 조립 사례에 올려요. 같은 링크로 다시 들어오면 내용을 고칠 수 있어요.</p>
+  </form>
+
+  <div class="card done" id="done" hidden>
+    <h1>고마워요, 잘 받았어요.</h1>
+    <p>확인한 뒤 사이트에 올릴게요. 고칠 게 있으면 같은 링크로 다시 들어와서 수정하면 돼요.</p>
+    <p class="foot"><a href="https://shortply.co.kr/">shortply.co.kr 으로 가기</a></p>
+  </div>
+</div>
+
+<script src="../config.js"></script>
+<script>
+(function () {
+  var C = window.HOWSTORY_CONFIG || {};
+  var $ = function (id) { return document.getElementById(id); };
+  var token = new URLSearchParams(location.search).get('t') || '';
+  var URLB = (C.SUPABASE_URL || '').replace(/\/$/, '');
+  var KEY = C.SUPABASE_ANON_KEY || '';
+  var MAX_IMG = 10, MAX_VID = 2, MAX_BYTES = 50 * 1024 * 1024;
+  var rating = 0; var items = []; // {path, type, url, uploading}
+  var LABEL = ['', '아쉬워요', '그저 그래요', '괜찮아요', '좋아요', '최고예요'];
+
+  function show(id) { ['loading', 'invalid', 'form', 'done'].forEach(function (k) { $(k).hidden = k !== id; }); }
+  function rpc(name, body) {
+    return fetch(URLB + '/rest/v1/rpc/' + name, { method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': KEY }, body: JSON.stringify(body || {}) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); });
+  }
+  function publicUrl(path) { return URLB + '/storage/v1/object/public/reviews/' + path; }
+  function uuidish() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
+
+  if (!token || !URLB || !KEY || !/^[0-9a-f-]{36}$/i.test(token)) { show('invalid'); return; }
+
+  // ---- 별점 ----
+  var starEl = $('stars');
+  for (var i = 1; i <= 5; i++) {
+    var b = document.createElement('button'); b.type = 'button'; b.dataset.v = i; b.setAttribute('role', 'radio'); b.setAttribute('aria-label', i + '점');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.7.8-4.9 4.6 1.3 6.6L12 17.3 6 20.6l1.3-6.6L2.4 9.4l6.7-.8z"/></svg>';
+    b.addEventListener('click', function () { setRating(+this.dataset.v); });
+    starEl.appendChild(b);
+  }
+  function setRating(v) { rating = v; starEl.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', +b.dataset.v <= v); b.setAttribute('aria-checked', String(+b.dataset.v === v)); }); $('starsTxt').textContent = LABEL[v] || ''; }
+
+  $('body').addEventListener('input', function () { $('cnt').textContent = this.value.length; });
+
+  // ---- 파일 ----
+  function renderGrid() {
+    $('grid').innerHTML = items.map(function (it, i) {
+      var inner = it.type === 'video' ? '<video src="' + it.url + '" muted playsinline preload="metadata"></video><span class="v">동영상</span>' : '<img src="' + it.url + '" alt="">';
+      return '<div class="th">' + inner + (it.uploading ? '<div class="p">올리는 중</div>' : '') + '<button type="button" class="x" data-i="' + i + '" aria-label="삭제">×</button></div>';
+    }).join('');
+  }
+  $('grid').addEventListener('click', function (e) {
+    var x = e.target.closest('.x'); if (!x) return;
+    var it = items[+x.dataset.i]; items.splice(+x.dataset.i, 1); renderGrid();
+    if (it && it.path) fetch(URLB + '/storage/v1/object/reviews/' + it.path, { method: 'DELETE', headers: { 'apikey': KEY } }).catch(function () {});
+  });
+
+  function shrinkImage(file) {
+    return new Promise(function (resolve) {
+      var img = new Image(); var u = URL.createObjectURL(file);
+      img.onload = function () {
+        var max = 1600; var w = img.width, h = img.height; var s = Math.min(1, max / Math.max(w, h));
+        var c = document.createElement('canvas'); c.width = Math.round(w * s); c.height = Math.round(h * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(u);
+        c.toBlob(function (blob) { resolve(blob || file); }, 'image/jpeg', 0.86);
+      };
+      img.onerror = function () { URL.revokeObjectURL(u); resolve(file); };
+      img.src = u;
+    });
+  }
+  function upload(path, blob, type) {
+    return fetch(URLB + '/storage/v1/object/reviews/' + path, { method: 'POST', headers: { 'apikey': KEY, 'Content-Type': type, 'x-upsert': 'true' }, body: blob })
+      .then(function (r) { if (!r.ok) return r.json().then(function (j) { throw j; }); return true; });
+  }
+  $('file').addEventListener('change', function () {
+    var files = Array.prototype.slice.call(this.files || []); this.value = '';
+    var imgs = items.filter(function (i) { return i.type === 'image'; }).length, vids = items.filter(function (i) { return i.type === 'video'; }).length;
+    files.forEach(function (f) {
+      var isVid = /^video\//.test(f.type); var isImg = /^image\//.test(f.type);
+      if (!isVid && !isImg) return;
+      if (isVid && vids >= MAX_VID) { setMsg('동영상은 2개까지예요.', 'bad'); return; }
+      if (isImg && imgs >= MAX_IMG) { setMsg('사진은 10장까지예요.', 'bad'); return; }
+      if (f.size > MAX_BYTES) { setMsg(f.name + ' 은 50MB가 넘어요.', 'bad'); return; }
+      if (isVid) vids++; else imgs++;
+      var it = { type: isVid ? 'video' : 'image', url: URL.createObjectURL(f), uploading: true, path: '' };
+      items.push(it); renderGrid();
+      var ext = isVid ? (f.name.split('.').pop() || 'mp4').toLowerCase() : 'jpg';
+      var path = token + '/' + uuidish() + '.' + ext;
+      var prep = isVid ? Promise.resolve(f) : shrinkImage(f);
+      prep.then(function (blob) { return upload(path, blob, isVid ? (f.type || 'video/mp4') : 'image/jpeg'); })
+        .then(function () { it.uploading = false; it.path = path; renderGrid(); setMsg('', ''); })
+        .catch(function (e) { items.splice(items.indexOf(it), 1); renderGrid(); setMsg('업로드가 안 됐어요. 다시 골라 주세요.', 'bad'); });
+    });
+  });
+  function setMsg(t, k) { var m = $('msg'); m.textContent = t; m.className = 'msg ' + (k || ''); }
+
+  // ---- 제출 ----
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!rating) { setMsg('별점을 눌러 주세요.', 'bad'); return; }
+    var body = $('body').value.trim(); if (!body) { setMsg('한마디를 적어 주세요.', 'bad'); return; }
+    if (items.some(function (i) { return i.uploading; })) { setMsg('사진이 아직 올라가는 중이에요. 잠깐만요.', 'bad'); return; }
+    var media = items.filter(function (i) { return i.path; }).map(function (i) { return { path: i.path, type: i.type }; });
+    $('send').disabled = true; $('send').textContent = '보내는 중...';
+    rpc('submit_review', { t: token, p_rating: rating, p_body: body, p_media: media })
+      .then(function () { show('done'); window.scrollTo(0, 0); })
+      .catch(function () { $('send').disabled = false; $('send').textContent = '후기 보내기'; setMsg('전송이 안 됐어요. 잠시 후 다시 눌러 주세요.', 'bad'); });
+  });
+
+  // ---- 시작: 토큰 확인 ----
+  rpc('review_context', { t: token }).then(function (d) {
+    if (!d || !d.ok) { show('invalid'); return; }
+    $('who').textContent = d.name || '고객';
+    if (d.review) {
+      setRating(d.review.rating || 0); $('body').value = d.review.body || ''; $('cnt').textContent = $('body').value.length;
+      items = (d.review.media || []).map(function (m) { return { path: m.path, type: m.type, url: publicUrl(m.path), uploading: false }; });
+      renderGrid();
+      $('sub').textContent = d.review.approved ? '이미 올라간 후기예요. 고치면 다시 확인 후 반영돼요.' : '남겨 주신 후기가 있어요. 고치고 다시 보내면 돼요.';
+      $('send').textContent = '고친 후기 보내기';
+    }
+    show('form');
+  }).catch(function () { show('invalid'); });
+})();
+</script>
+</body>
+</html>
