@@ -184,18 +184,32 @@
   .quote b { color: var(--ink); font-weight: 700; }
   .build.empty .art { border: 1px dashed var(--line); background: var(--bg); }
 
-  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .rvc { background: var(--bg-2); padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .reviews-head { display: flex; align-items: center; gap: 10px; }
+  .reviews-head .all { font-size: 13px; font-weight: 700; text-decoration: none; padding: 6px 10px; border: 1px solid var(--ink); }
+  .reviews-head .all:hover { background: var(--btn); color: var(--btn-ink); }
+  .car { position: relative; }
+  .track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding-bottom: 4px; }
+  .track::-webkit-scrollbar { display: none; }
+  .rvc { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; background: var(--bg-2); padding: 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .rvc .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border: 0; height: auto; }
   .rvc .name { font-weight: 700; font-size: 14px; }
   .rvc .name small { font-weight: 500; color: var(--ink-3); margin-left: 6px; }
-  .rvc .stars { color: var(--accent); letter-spacing: 2px; font-size: 14px; }
-  .rvc .body { font-size: 14px; color: var(--ink-2); white-space: pre-wrap; }
+  .rvc .stars { color: var(--accent); letter-spacing: 2px; font-size: 14px; white-space: nowrap; }
+  .rvc .body { font-size: 14px; color: var(--ink-2); white-space: pre-wrap; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
   .rvc .media { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
   .rvc .media a, .rvc .media video { display: block; aspect-ratio: 1; background: var(--bg-3); overflow: hidden; width: 100%; }
   .rvc .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .rvc .media video { object-fit: cover; }
-  .rvc .date { font-size: 11px; color: var(--ink-3); }
+  .rvc .media .more { display: grid; place-items: center; aspect-ratio: 1; background: var(--bg-3); font-size: 12px; font-weight: 700; color: var(--ink-2); text-decoration: none; }
+  .rvc .date { font-size: 11px; color: var(--ink-3); margin-top: auto; }
+  .car .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; display: grid; place-items: center; font-size: 18px; padding: 0; }
+  .car .nav.prev { left: -12px; } .car .nav.next { right: -12px; }
+  .car .nav:disabled { opacity: .35; cursor: default; }
+  .dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+  .dots i.on { background: var(--accent); }
+  @media (max-width: 860px) { .rvc { flex-basis: 100%; } .car .nav { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .track { scroll-behavior: auto; } }
   .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line-2); }
   .why div { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--line); }
   .why div + div { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -251,7 +265,7 @@
     .nav { display: none; }
     .steps { grid-template-columns: 1fr 1fr; }
     .step:nth-child(3) { padding-left: 0; border-left: 0; }
-    .builds, .why, .capacity, .apply, .row, .reviews { grid-template-columns: 1fr; }
+    .builds, .why, .capacity, .apply, .row { grid-template-columns: 1fr; }
     .why div + div { padding-left: 0; border-left: 0; }
     .capacity { gap: 28px; }
     section.block { padding-block: 36px; }
@@ -419,10 +433,15 @@
 
   <section class="block" id="reviews" hidden>
     <div class="head">
-      <h2>고객 후기</h2>
+      <div class="reviews-head"><h2>고객 후기 <span id="reviewCount" style="color:var(--accent)"></span></h2><a class="all" href="reviews/">전체 보기</a></div>
       <p>조립 받은 분들이 직접 남긴 후기예요 · 이름은 가려서 올려요</p>
     </div>
-    <div class="reviews" id="reviewList"></div>
+    <div class="car" id="car">
+      <button type="button" class="nav prev" id="carPrev" aria-label="이전 후기">‹</button>
+      <div class="track" id="reviewList"></div>
+      <button type="button" class="nav next" id="carNext" aria-label="다음 후기">›</button>
+      <div class="dots" id="carDots"></div>
+    </div>
   </section>
 
   <section class="block">
@@ -602,7 +621,7 @@
     }).catch(function () {});
   })();
 
-  // ---- 고객 후기: 승인된 것만 불러와 표시 ----
+  // ---- 고객 후기: 승인된 것만 불러와 캐러셀로 ----
   (function () {
     var C = window.HOWSTORY_CONFIG || {};
     if (!C.SUPABASE_URL || !C.SUPABASE_ANON_KEY) return;
@@ -611,19 +630,45 @@
     fetch(base + '/rest/v1/rpc/public_reviews', { method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': C.SUPABASE_ANON_KEY }, body: '{}' })
       .then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
         if (!Array.isArray(list) || !list.length) return;
-        var el = document.getElementById('reviewList');
-        el.innerHTML = list.map(function (v) {
+        var track = document.getElementById('reviewList');
+        track.innerHTML = list.map(function (v) {
           var stars = '★★★★★'.slice(0, v.rating) + '☆☆☆☆☆'.slice(0, 5 - v.rating);
           var d = new Date(v.at); var date = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate();
-          var media = (v.media || []).map(function (m) {
+          var ms = v.media || []; var shown = ms.slice(0, 4);
+          var media = shown.map(function (m, i) {
             var u = base + '/storage/v1/object/public/reviews/' + m.path;
-            return m.type === 'video' ? '<video src="' + esc(u) + '" controls playsinline preload="metadata"></video>' : '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '" alt="고객 후기 사진" loading="lazy"></a>';
+            if (i === 3 && ms.length > 4) return '<a class="more" href="reviews/">+' + (ms.length - 3) + '</a>';
+            return m.type === 'video' ? '<video src="' + esc(u) + '" muted playsinline preload="metadata"></video>' : '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '" alt="고객 후기 사진" loading="lazy"></a>';
           }).join('');
           return '<article class="rvc"><div class="top"><span class="name">' + esc(v.name) + ' 고객님<small>' + esc(v.purpose || '') + (v.budget ? ' · ' + esc(v.budget) + '만원' : '') + '</small></span><span class="stars" aria-label="' + v.rating + '점">' + stars + '</span></div>' +
             '<div class="body">' + esc(v.body) + '</div>' + (media ? '<div class="media">' + media + '</div>' : '') + '<div class="date">' + date + '</div></article>';
         }).join('');
+        document.getElementById('reviewCount').textContent = list.length;
         document.getElementById('reviews').hidden = false;
         var nv = document.getElementById('navReviews'); if (nv) nv.hidden = false;
+
+        // 캐러셀: 화살표 · 점 · 자동 롤링(5초, 손대면 멈춤)
+        var prev = document.getElementById('carPrev'), next = document.getElementById('carNext'), dots = document.getElementById('carDots');
+        var cards = Array.prototype.slice.call(track.children);
+        function perView() { return window.innerWidth <= 860 ? 1 : 3; }
+        function pages() { return Math.max(1, Math.ceil(cards.length / perView())); }
+        function page() { var w = cards[0].offsetWidth + 16; return Math.round(track.scrollLeft / (w * perView())); }
+        function go(pg) { var n = pages(); pg = ((pg % n) + n) % n; var w = cards[0].offsetWidth + 16; track.scrollTo({ left: pg * w * perView(), behavior: 'smooth' }); }
+        function drawDots() { var n = pages(); var cur = page(); dots.innerHTML = ''; for (var i = 0; i < n; i++) { var d = document.createElement('i'); if (i === cur) d.className = 'on'; dots.appendChild(d); } prev.disabled = next.disabled = n <= 1; }
+        prev.addEventListener('click', function () { go(page() - 1); stopAuto(); });
+        next.addEventListener('click', function () { go(page() + 1); stopAuto(); });
+        track.addEventListener('scroll', function () { clearTimeout(track._t); track._t = setTimeout(drawDots, 80); });
+        window.addEventListener('resize', drawDots);
+        drawDots();
+        var auto = null;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function startAuto() { if (reduce || pages() <= 1 || auto) return; auto = setInterval(function () { go(page() + 1); }, 5000); }
+        function stopAuto() { clearInterval(auto); auto = null; }
+        var car = document.getElementById('car');
+        car.addEventListener('mouseenter', stopAuto); car.addEventListener('mouseleave', startAuto);
+        car.addEventListener('touchstart', stopAuto, { passive: true });
+        document.addEventListener('visibilitychange', function () { document.hidden ? stopAuto() : startAuto(); });
+        startAuto();
       }).catch(function () {});
   })();
 
