@@ -275,7 +275,7 @@
   <section class="hero">
     <div>
       <svg class="roofmark glow" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 40V18L32 4l24 14v22"/><circle cx="32" cy="4" r="3" fill="var(--bg)"/><circle cx="8" cy="40" r="3" fill="var(--bg)"/><circle cx="56" cy="40" r="3" fill="var(--bg)"/></svg>
-      <div class="kicker"><h2>조립 컴퓨터 맞춤 서비스</h2><span class="badge accent">이달 조립 가능 9대 남음</span></div>
+      <div class="kicker"><h2>조립 컴퓨터 맞춤 서비스</h2><span class="badge accent" id="slotBadge">이달 조립 가능 9대 남음</span></div>
       <h1>하우스토리에선<br>부품 이름 몰라도 돼요.<br>뭐 할 건지, 얼마까진지만.</h1>
       <p class="lead">견적 사이트에서 CPU 고르다 포기한 적 있으시죠. <b>용도랑 예산 두 가지</b>만 들으면 구성부터 조립, 케이블 정리, 온도 테스트까지 끝내서 드립니다. 팔고 끝이 아니라 1년 뒤 업그레이드 물어봐도 답해 드려요.</p>
       <div class="promise"><span class="pct">10%</span><span><b>조립 실력을 나누는 일이라, 조립비 수익의 10%는 기부해요.</b><br>부품엔 마진을 안 붙이고, 제 몫인 조립비에서 떼어 교회·선교단체·성로원에 보냅니다. 기부 내역은 이 페이지에 그대로 올려요.</span></div>
@@ -431,8 +431,8 @@
     <div class="capacity">
       <div>
         <h2>이달 남은 자리</h2>
-        <div class="big num">9<small>/ 10대</small></div>
-        <div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="big num" id="slotBig">9<small>/ 10대</small></div>
+        <div class="bars" id="slotBars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
         <p>본업이 따로 있어서 한 달에 열 대까지만 받아요. 대신 한 대 한 대 하우스토리 이름 걸고 조립해요. 다 차면 다음 달 예약으로 받아요.</p>
       </div>
       <div>
@@ -564,6 +564,22 @@
   budget.addEventListener('input', render);
   document.getElementById('fBudget').addEventListener('input', function () { this.dataset.touched = '1'; });
   render();
+
+  // ---- 이달 남은 자리: 어드민에서 '완료'로 바꾼 건수를 읽어 자동 갱신 ----
+  (function () {
+    var C = window.HOWSTORY_CONFIG || {};
+    if (!C.SUPABASE_URL || !C.SUPABASE_ANON_KEY) return;
+    fetch(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/rpc/howstory_public_stats', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': C.SUPABASE_ANON_KEY }, body: '{}'
+    }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (!d || typeof d.month_done !== 'number') return;
+      var cap = d.cap || 10; var left = Math.max(0, cap - d.month_done);
+      var badge = document.getElementById('slotBadge'), big = document.getElementById('slotBig'), bars = document.getElementById('slotBars');
+      if (badge) badge.textContent = left > 0 ? '이달 조립 가능 ' + left + '대 남음' : '이달 마감 · 다음 달 예약 받는 중';
+      if (big) big.innerHTML = left + '<small>/ ' + cap + '대</small>';
+      if (bars) { var h = ''; for (var i = 0; i < cap; i++) h += '<i' + (i < left ? ' class="on"' : '') + '></i>'; bars.innerHTML = h; }
+    }).catch(function () {});
+  })();
 
   var b1 = document.getElementById('b1img');
   document.querySelectorAll('.thumbs button').forEach(function (t) {
