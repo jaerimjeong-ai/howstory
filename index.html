@@ -146,6 +146,12 @@
   .build .art { aspect-ratio: 4 / 3; max-width: 100%; background: var(--bg-2); position: relative; overflow: hidden; }
   .build .art .pc { position: absolute; inset: 0; display: grid; place-items: center; }
   .build .art svg { width: 46%; height: auto; }
+  .build .art.photo { background-color: var(--bg-2); background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .build .art.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 4%; box-sizing: border-box; filter: drop-shadow(0 12px 22px rgba(0,0,0,.18)); }
+  .thumbs { display: flex; gap: 6px; margin-top: 6px; }
+  .thumbs button { flex: 0 0 64px; height: 64px; padding: 4px; border: 1px solid var(--line); background: var(--bg-2); cursor: pointer; }
+  .thumbs button[aria-pressed="true"] { border-color: var(--accent); }
+  .thumbs img { width: 100%; height: 100%; object-fit: contain; }
   .build .art .tag { position: absolute; left: 12px; top: 12px; font-size: 11px; font-weight: 700; padding: 3px 7px; background: var(--bg); color: var(--ink); }
   .build .art .tag.accent { background: var(--accent); color: var(--accent-ink); }
   .build .body { padding-top: 14px; }
@@ -337,25 +343,20 @@
       </article>
 
       <article class="build">
-        <div class="art">
+        <div class="art photo">
           <span class="tag">BUILD 001 · 첫 번째 고객</span>
-          <div class="pc" aria-hidden="true">
-            <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--ink-3)">
-              <rect x="30" y="20" width="140" height="200" rx="4"/>
-              <rect x="30" y="20" width="140" height="70" rx="4" fill="currentColor" opacity=".08" stroke="none"/>
-              <circle cx="100" cy="55" r="20"/>
-              <circle cx="100" cy="55" r="7"/>
-              <line x1="48" y1="120" x2="152" y2="120"/>
-              <line x1="48" y1="150" x2="152" y2="150"/>
-              <line x1="48" y1="180" x2="120" y2="180"/>
-            </svg>
-          </div>
+          <img id="b1img" src="img/build001-front.webp" alt="희대님 게이밍 PC, 화이트 케이스 정면" loading="lazy">
+        </div>
+        <div class="thumbs" role="group" aria-label="사진 고르기">
+          <button type="button" data-src="img/build001-front.webp" aria-pressed="true"><img src="img/build001-front.webp" alt="정면"></button>
+          <button type="button" data-src="img/build001-inside.webp" aria-pressed="false"><img src="img/build001-inside.webp" alt="내부"></button>
+          <button type="button" data-src="img/build001-side.webp" aria-pressed="false"><img src="img/build001-side.webp" alt="측면"></button>
         </div>
         <div class="body">
-          <div class="brandline">게임용 · 직접 수령</div>
+          <div class="brandline">게임용 · 화이트 · 직접 수령</div>
           <h3>희대님의 게이밍 PC</h3>
           <div class="price"><b>고객 후기</b><span>2026 · 상세 구성은 고객 동의 후 공개</span></div>
-          <div class="tags"><i>상담형 견적</i><i>케이블 정리</i><i>부하 테스트 완료</i></div>
+          <div class="tags"><i>화이트 빌드</i><i>지포스 RTX</i><i>듀얼타워 공랭</i><i>ARGB 팬</i><i>부하 테스트 완료</i></div>
           <div class="quote"><b>희대님 한마디</b> "조합이 끝내주는 컴퓨터 조립이었습니다. 부품 하나하나 왜 골랐는지 설명해 주니까 뭘 받았는지 알겠더라고요. 케이블 정리까지 깔끔해서 열어 봐도 기분 좋습니다."</div>
           <div class="quote" style="margin-top:8px"><b>하우스토리 메모</b> 예산 안에서 그래픽카드에 힘을 주고 나머지는 딱 맞게 짰어요. 하루 부하 테스트에서 온도 문제 없었고, 1년 무상 점검 대상이에요.</div>
         </div>
@@ -509,6 +510,15 @@
   budget.addEventListener('input', render);
   document.getElementById('fBudget').addEventListener('input', function () { this.dataset.touched = '1'; });
   render();
+
+  var b1 = document.getElementById('b1img');
+  document.querySelectorAll('.thumbs button').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.thumbs button').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      t.setAttribute('aria-pressed', 'true');
+      if (b1) b1.src = t.dataset.src;
+    });
+  });
 
   var form = document.getElementById('form');
   var ENDPOINT = form.getAttribute('action');
