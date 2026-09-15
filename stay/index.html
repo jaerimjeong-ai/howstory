@@ -92,6 +92,16 @@
   .guide a:hover { background:var(--btn); color:var(--btn-ink); }
   .guide a:hover small { color:inherit; }
   .note { font-size:12px; color:var(--ink-3); margin-top:10px; }
+  .addr { margin-top:12px; border-top:1px solid var(--line-2); }
+  .addr div { display:grid; grid-template-columns:90px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .addr b { font-weight:700; color:var(--ink-3); font-size:12px; letter-spacing:.06em; padding-top:3px; }
+  .addr .v { color:var(--ink); }
+  .addr .v small { display:block; color:var(--ink-3); font-size:12px; }
+  .mapwrap { margin-top:14px; border:1px solid var(--line); background:var(--bg-2); aspect-ratio: 16 / 10; max-width:100%; overflow:hidden; }
+  .mapwrap iframe { width:100%; height:100%; border:0; display:block; }
+  .maplinks { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .maplinks a, .maplinks button { font-size:13px; font-weight:700; padding:8px 12px; border:1px solid var(--ink); background:var(--bg); color:var(--ink); text-decoration:none; cursor:pointer; }
+  .maplinks a:hover, .maplinks button:hover { background:var(--btn); color:var(--btn-ink); }
   .cross { margin-top:44px; padding:22px 24px; background:var(--accent-soft); border-left:3px solid var(--accent); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
   .cross b { font-weight:700; }
   .cross p { font-size:14px; color:var(--ink-2); margin-top:4px; }
@@ -183,7 +193,7 @@
       <p data-i="sp_p">하우스토리 스테이 · 은평구 새절</p>
     </div>
     <div class="cols3">
-      <div><div class="k" data-i="sp1_k">위치</div><h3 data-i="sp1_h">새절역 인근, 조용한 동네</h3><p data-i="sp1_p">서울 은평구 새절역 가까이에 있어요. 상세 주소와 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.</p></div>
+      <div><div class="k" data-i="sp1_k">위치</div><h3 data-i="sp1_h">새절역 인근, 조용한 동네</h3><p data-i="sp1_p">6호선 새절역에서 걸어서 약 7분, 서울 은평구 가좌로 293이에요. 건물 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.</p></div>
       <div><div class="k" data-i="sp2_k">머무는 방식</div><h3 data-i="sp2_h">침대 둘, 실내화 신고, 밤엔 조용히</h3><p data-i="sp2_p">현관에서 신발을 벗고 실내 슬리퍼를 신는 집이에요. 오후 10시부터 아침 7시까지는 이웃을 위해 조용히 지내 주세요.</p></div>
       <div><div class="k" data-i="sp3_k">외국인 손님</div><h3 data-i="sp3_h">말이 안 통해도 괜찮아요</h3><p data-i="sp3_p">한국어·영어·중국어·일본어 가이드북이 있고, 한국 전화번호 없이 해외 카드로 주문하는 배달 앱 안내도 넣어 두었어요.</p></div>
     </div>
@@ -234,8 +244,20 @@
       </div>
       <div>
         <h2 data-i="way_h">오시는 길</h2>
-        <p data-i="way_p">서울 은평구, 새절역 인근이에요. 상세 위치와 건물 출입 방법은 개인정보와 안전을 위해 예약 확정 후에 안내해 드려요.</p>
-        <p style="margin-top:12px"><span data-i="contact">문의</span> <a href="mailto:howsdoyi@gmail.com" style="color:var(--accent);font-weight:600;text-decoration:none">howsdoyi@gmail.com</a></p>
+        <p data-i="way_p">6호선 새절역에서 걸어서 약 7분이에요. 건물 출입 방법은 예약 확정 후 가이드북으로 안내해 드려요.</p>
+        <div class="addr">
+          <div><b data-i="way_addr_l">주소</b><span class="v" id="addrText">서울 은평구 가좌로 293 스테이인새절 802호<small>Room 802, 293 Gajwa-ro, Eunpyeong-gu, Seoul 03441 · (지번) 신사동 39-28</small></span></div>
+          <div><b data-i="way_sub_l">지하철</b><span class="v" data-i="way_walk">6호선 새절역 · 도보 약 7분</span></div>
+          <div><b data-i="way_park_l">주차</b><span class="v" data-i="way_park">무료 1대 · 차량 번호를 미리 알려 주세요</span></div>
+        </div>
+        <div class="mapwrap"><iframe title="map" src="https://www.google.com/maps?q=37.5942313,126.9116938&z=16&output=embed&hl=ko" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <div class="maplinks">
+          <a href="https://map.kakao.com/link/map/%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%9D%B8%EC%83%88%EC%A0%88,37.5942313,126.9116938" target="_blank" rel="noopener" data-i="map_kakao">카카오맵</a>
+          <a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EC%9D%80%ED%8F%89%EA%B5%AC%20%EA%B0%80%EC%A2%8C%EB%A1%9C%20293" target="_blank" rel="noopener" data-i="map_naver">네이버 지도</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=37.5942313%2C126.9116938" target="_blank" rel="noopener">Google Maps</a>
+          <button type="button" id="copyAddr" data-i="copy">주소 복사</button>
+        </div>
+        <p style="margin-top:14px"><span data-i="contact">문의</span> <a href="mailto:howsdoyi@gmail.com" style="color:var(--accent);font-weight:600;text-decoration:none">howsdoyi@gmail.com</a></p>
       </div>
     </div>
     <div class="cross">
@@ -261,7 +283,7 @@
       f_in: '체크인', f_out: '체크아웃', f_park_v: '1대', f_park: '무료 주차', f_lang_v: '4개 국어', f_lang: '가이드북 KR·EN·CN·JP', guide: '가이드북',
       ph_h: '공간 둘러보기', ph_p: '사진을 누르면 크게 보여요', g1: '거실 · 식탁', g2: '침실', g3: '거실 한켠', g4: '화장대',
       sp_h: '이런 곳이에요', sp_p: '하우스토리 스테이 · 은평구 새절',
-      sp1_k: '위치', sp1_h: '새절역 인근, 조용한 동네', sp1_p: '서울 은평구 새절역 가까이에 있어요. 상세 주소와 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.',
+      sp1_k: '위치', sp1_h: '새절역 인근, 조용한 동네', sp1_p: '6호선 새절역에서 걸어서 약 7분, 서울 은평구 가좌로 293이에요. 건물 출입 방법은 예약이 확정되면 가이드북으로 안내해 드려요.',
       sp2_k: '머무는 방식', sp2_h: '침대 둘, 실내화 신고, 밤엔 조용히', sp2_p: '현관에서 신발을 벗고 실내 슬리퍼를 신는 집이에요. 오후 10시부터 아침 7시까지는 이웃을 위해 조용히 지내 주세요.',
       sp3_k: '외국인 손님', sp3_h: '말이 안 통해도 괜찮아요', sp3_p: '한국어·영어·중국어·일본어 가이드북이 있고, 한국 전화번호 없이 해외 카드로 주문하는 배달 앱 안내도 넣어 두었어요.',
       am_h: '편의시설', am_p: '사용법은 가이드북에 사진과 함께 있어요',
@@ -269,7 +291,7 @@
       ru_h: '이용 안내', ru_p: '서로 편하게 머물기 위한 약속',
       r1: '체크인 · 체크아웃', r1s: '오후 3시 입실, 오전 11시 퇴실이에요.', r2: '실내화 착용', r2s: '현관에서 신발을 벗고 실내 슬리퍼를 이용해 주세요.', r3: '전 구역 금연', r3s: '위반 시 특수 청소비가 부과될 수 있어요.', r4: '반려동물', r4s: '청결한 관리를 위해 동반은 정중히 제한하고 있어요.', r5: '콰이엇 타임', r5s: '오후 10시부터 아침 7시까지는 조용히 부탁드려요.', r6: '주차', r6s: '무료 1대. 공용 공간이라 만차 시 어려울 수 있고, 진입로 경사가 있으니 서행해 주세요.',
       bk_h: '예약', bk_p: '예약은 에어비앤비에서 받고 있어요. 날짜와 인원을 알려 주시면 가능 여부를 바로 답해 드릴게요. 확정되면 상세 주소와 출입 방법이 담긴 가이드북 링크를 보내 드려요.', bk_mail: '메일로 예약 문의', bk_note: '에어비앤비 예약 페이지 링크는 곧 연결돼요.',
-      way_h: '오시는 길', way_p: '서울 은평구, 새절역 인근이에요. 상세 위치와 건물 출입 방법은 개인정보와 안전을 위해 예약 확정 후에 안내해 드려요.', contact: '문의',
+      way_h: '오시는 길', way_p: '6호선 새절역에서 걸어서 약 7분이에요. 건물 출입 방법은 예약 확정 후 가이드북으로 안내해 드려요.', contact: '문의', way_addr_l: '주소', way_sub_l: '지하철', way_walk: '6호선 새절역 · 도보 약 7분', way_park_l: '주차', way_park: '무료 1대 · 차량 번호를 미리 알려 주세요', map_kakao: '카카오맵', map_naver: '네이버 지도', copy: '주소 복사', copied: '복사됐어요',
       cr_h: '하우스토리 테크도 있어요', cr_p: '집을 꾸미듯 컴퓨터도 정성껏 조립해 드려요. 부품 마진 0원, 조립비 수익 10% 기부.', cr_btn: '조립 컴퓨터 보러 가기', ft_brand: '하우스토리 스테이',
       _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('하우스토리 스테이 예약 문의')
     },
@@ -281,7 +303,7 @@
       f_in: 'Check-in', f_out: 'Check-out', f_park_v: '1 car', f_park: 'Free parking', f_lang_v: '4 languages', f_lang: 'Guide book KR·EN·CN·JP', guide: 'Guide Book',
       ph_h: 'Take a look around', ph_p: 'Tap a photo to enlarge', g1: 'Living room · dining table', g2: 'Bedroom', g3: 'Corner of the living room', g4: 'Dressing table',
       sp_h: 'What it\'s like', sp_p: 'HOWS.TORY Stay · Saejeol, Eunpyeong-gu',
-      sp1_k: 'Location', sp1_h: 'Near Saejeol Station, a quiet neighborhood', sp1_p: 'Close to Saejeol Station in Eunpyeong-gu, Seoul. The exact address and entry instructions come with the guide book once your booking is confirmed.',
+      sp1_k: 'Location', sp1_h: 'Near Saejeol Station, a quiet neighborhood', sp1_p: 'About a 7-minute walk from Saejeol Station (Line 6): 293 Gajwa-ro, Eunpyeong-gu, Seoul. Building entry instructions come with the guide book once your booking is confirmed.',
       sp2_k: 'How we live here', sp2_h: 'Two beds, slippers on, quiet at night', sp2_p: 'Shoes come off at the door and indoor slippers go on. From 10 PM to 7 AM please keep it quiet for the neighbors.',
       sp3_k: 'International guests', sp3_h: 'No Korean needed', sp3_p: 'Guide books in Korean, English, Chinese and Japanese, plus a delivery-app guide that takes foreign cards with no Korean phone number.',
       am_h: 'Amenities', am_p: 'How-to photos are in the guide book',
@@ -289,7 +311,7 @@
       ru_h: 'House rules', ru_p: 'So everyone stays comfortable',
       r1: 'Check-in · Check-out', r1s: 'Check-in from 3 PM, check-out by 11 AM.', r2: 'Indoor slippers', r2s: 'Please take your shoes off at the door and use the slippers.', r3: 'No smoking anywhere', r3s: 'A special cleaning fee may apply if this is violated.', r4: 'Pets', r4s: 'To keep the place clean, we kindly don\'t allow pets.', r5: 'Quiet hours', r5s: 'Please keep it quiet from 10 PM to 7 AM.', r6: 'Parking', r6s: 'One free space. It\'s a shared lot, so it may be full at times; the ramp is steep, please drive slowly.',
       bk_h: 'Booking', bk_p: 'Bookings are handled through Airbnb. Send us your dates and number of guests and we\'ll confirm availability right away. Once confirmed, you\'ll get the guide book link with the exact address and entry instructions.', bk_mail: 'Inquire by email', bk_note: 'The Airbnb booking link is coming soon.',
-      way_h: 'Getting here', way_p: 'Eunpyeong-gu, Seoul, near Saejeol Station. For privacy and safety, the exact location and building entry are shared after your booking is confirmed.', contact: 'Contact',
+      way_h: 'Getting here', way_p: 'About a 7-minute walk from Saejeol Station on Line 6. Building entry instructions are sent with the guide book after your booking is confirmed.', contact: 'Contact', way_addr_l: 'Address', way_sub_l: 'Subway', way_walk: 'Saejeol Station (Line 6) · about 7 min on foot', way_park_l: 'Parking', way_park: '1 free space · send us your plate number in advance', map_kakao: 'Kakao Map', map_naver: 'Naver Map', copy: 'Copy address', copied: 'Copied',
       cr_h: 'We also build PCs: HOWS.TORY Tech', cr_p: 'We build custom PCs with the same care we put into this home. No markup on parts, 10% of assembly fees donated.', cr_btn: 'See custom PCs', ft_brand: 'HOWS.TORY Stay',
       _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay booking inquiry')
     },
@@ -301,7 +323,7 @@
       f_in: '入住', f_out: '退房', f_park_v: '1 辆', f_park: '免费停车', f_lang_v: '4 种语言', f_lang: '指南手册 韩·英·中·日', guide: '指南手册',
       ph_h: '看看房间', ph_p: '点击照片可放大', g1: '客厅 · 餐桌', g2: '卧室', g3: '客厅一角', g4: '梳妆台',
       sp_h: '这是一个怎样的地方', sp_p: 'HOWS.TORY Stay · 恩平区 新村',
-      sp1_k: '位置', sp1_h: '新村站附近，安静的社区', sp1_p: '靠近首尔恩平区新村站(Saejeol)。详细地址与进门方式将在预订确认后通过指南手册告知。',
+      sp1_k: '位置', sp1_h: '新村站附近，安静的社区', sp1_p: '从 6 号线新村站(Saejeol)步行约 7 分钟，首尔恩平区加佐路 293。楼栋进门方式将在预订确认后通过指南手册告知。',
       sp2_k: '居住方式', sp2_h: '两张床，穿拖鞋，夜间保持安静', sp2_p: '进门请脱鞋换上室内拖鞋。晚上 10 点到早上 7 点，请为邻居保持安静。',
       sp3_k: '外国客人', sp3_h: '不会韩语也没关系', sp3_p: '备有韩、英、中、日四种语言的指南手册，还有无需韩国手机号、可用境外银行卡下单的外卖 App 指南。',
       am_h: '设施', am_p: '使用方法请见指南手册（附照片）',
@@ -309,7 +331,7 @@
       ru_h: '入住须知', ru_p: '为了彼此都住得舒服的约定',
       r1: '入住 · 退房', r1s: '下午 3 点入住，上午 11 点退房。', r2: '室内拖鞋', r2s: '请在玄关脱鞋并换上室内拖鞋。', r3: '全区域禁烟', r3s: '违反时可能收取特殊清洁费。', r4: '宠物', r4s: '为保持清洁，恕不接待宠物。', r5: '安静时段', r5s: '晚上 10 点至早上 7 点请保持安静。', r6: '停车', r6s: '免费 1 辆。停车场为公用，满位时可能无法停车；入口坡道较陡，请慢行。',
       bk_h: '预订', bk_p: '预订通过 Airbnb 进行。告诉我们日期和人数，我们会立即答复是否可订。确认后会发送含详细地址和进门方式的指南手册链接。', bk_mail: '邮件咨询预订', bk_note: 'Airbnb 预订页面链接即将上线。',
-      way_h: '如何前往', way_p: '位于首尔恩平区新村站附近。出于隐私与安全考虑，详细位置和楼栋进门方式将在预订确认后告知。', contact: '联系',
+      way_h: '如何前往', way_p: '从 6 号线新村站(Saejeol)步行约 7 分钟。楼栋进门方式将在预订确认后通过指南手册告知。', contact: '联系', way_addr_l: '地址', way_sub_l: '地铁', way_walk: '6 号线新村站(Saejeol) · 步行约 7 分钟', way_park_l: '停车', way_park: '免费 1 辆 · 请提前告知车牌号', map_kakao: 'Kakao 地图', map_naver: 'Naver 地图', copy: '复制地址', copied: '已复制',
       cr_h: '我们也做 HOWS.TORY Tech 装机', cr_p: '像布置家一样用心组装电脑。配件零加价，装机费收入的 10% 用于捐赠。', cr_btn: '查看定制电脑', ft_brand: 'HOWS.TORY Stay',
       _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay 预订咨询')
     },
@@ -321,7 +343,7 @@
       f_in: 'チェックイン', f_out: 'チェックアウト', f_park_v: '1台', f_park: '無料駐車', f_lang_v: '4か国語', f_lang: 'ガイドブック 韓·英·中·日', guide: 'ガイドブック',
       ph_h: 'お部屋を見る', ph_p: '写真をタップすると拡大します', g1: 'リビング · ダイニング', g2: '寝室', g3: 'リビングの一角', g4: 'ドレッサー',
       sp_h: 'こんな場所です', sp_p: 'HOWS.TORY Stay · 恩平区 セジョル',
-      sp1_k: '立地', sp1_h: 'セジョル駅の近く、静かな住宅街', sp1_p: 'ソウル恩平区セジョル駅の近くです。詳しい住所と入館方法は、予約確定後にガイドブックでご案内します。',
+      sp1_k: '立地', sp1_h: 'セジョル駅の近く、静かな住宅街', sp1_p: '6号線セジョル(Saejeol)駅から徒歩約7分、ソウル恩平区加佐路293です。建物の入り方は予約確定後にガイドブックでご案内します。',
       sp2_k: '過ごし方', sp2_h: 'ベッド2台、スリッパ、夜は静かに', sp2_p: '玄関で靴を脱ぎ、室内スリッパに履き替える家です。夜10時から朝7時までは、ご近所のために静かにお過ごしください。',
       sp3_k: '海外からのお客様', sp3_h: '韓国語が話せなくても大丈夫', sp3_p: '韓・英・中・日のガイドブックがあり、韓国の電話番号なしで海外カード決済ができるデリバリーアプリの案内も入れています。',
       am_h: '設備', am_p: '使い方は写真つきでガイドブックに',
@@ -329,7 +351,7 @@
       ru_h: 'ご利用案内', ru_p: 'お互いが心地よく過ごすためのお約束',
       r1: 'チェックイン · チェックアウト', r1s: '午後3時チェックイン、午前11時チェックアウトです。', r2: '室内スリッパ', r2s: '玄関で靴を脱ぎ、スリッパをご利用ください。', r3: '全館禁煙', r3s: '違反時は特別清掃費をいただく場合があります。', r4: 'ペット', r4s: '清潔を保つため、ペットの同伴はご遠慮いただいています。', r5: 'クワイエットタイム', r5s: '夜10時から朝7時までは静かにお願いします。', r6: '駐車', r6s: '無料1台。共用駐車場のため満車の場合があり、進入路の坂が急なので徐行してください。',
       bk_h: '予約', bk_p: '予約はAirbnbで受け付けています。日程と人数をお知らせいただければ、空き状況をすぐにお答えします。確定後、詳しい住所と入館方法を記載したガイドブックのリンクをお送りします。', bk_mail: 'メールで予約を問い合わせる', bk_note: 'Airbnbの予約ページへのリンクは近日公開です。',
-      way_h: 'アクセス', way_p: 'ソウル恩平区、セジョル駅の近くです。プライバシーと安全のため、詳しい場所と建物の入り方は予約確定後にご案内します。', contact: 'お問い合わせ',
+      way_h: 'アクセス', way_p: '6号線セジョル(Saejeol)駅から徒歩約7分です。建物の入り方は予約確定後にガイドブックでご案内します。', contact: 'お問い合わせ', way_addr_l: '住所', way_sub_l: '地下鉄', way_walk: '6号線セジョル駅 · 徒歩約7分', way_park_l: '駐車', way_park: '無料1台 · ナンバーを事前にお知らせください', map_kakao: 'Kakaoマップ', map_naver: 'Naverマップ', copy: '住所をコピー', copied: 'コピーしました',
       cr_h: 'HOWS.TORY Tech もあります', cr_p: '家を整えるように、パソコンも丁寧に組み立てます。パーツはマージンゼロ、組立費の10%を寄付。', cr_btn: 'カスタムPCを見る', ft_brand: 'HOWS.TORY Stay',
       _mail: 'mailto:howsdoyi@gmail.com?subject=' + encodeURIComponent('HOWS.TORY Stay 予約のお問い合わせ')
     }
@@ -352,6 +374,14 @@
   apply(q && T[q] ? q : (saved && T[saved] ? saved : guess));
   sel.addEventListener('change', function () { apply(sel.value); });
 
+  var cp = document.getElementById('copyAddr');
+  if (cp) cp.addEventListener('click', function () {
+    var txt = '서울 은평구 가좌로 293 스테이인새절 802호 (Room 802, 293 Gajwa-ro, Eunpyeong-gu, Seoul 03441)';
+    var t = T[document.documentElement.lang] || T.ko;
+    var done = function () { cp.textContent = t.copied; setTimeout(function () { cp.textContent = t.copy; }, 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function () { window.prompt('', txt); });
+    else window.prompt('', txt);
+  });
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[data-lb]'); if (!a) return;
     e.preventDefault();
